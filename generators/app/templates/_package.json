@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "jackong",
   "scripts": {
-      "start": "node server.js"
+      "start": "PORT=3000 node server.js"
   },
   "dependencies": {
       "react": "^0.14.2",

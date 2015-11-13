@@ -31,6 +31,13 @@ module.exports = yeoman.generators.Base.extend({
           this.templatePath('gulpfile.js'),
           this.destinationPath('gulpfile.js')
       )
+      this.fs.copyTpl(
+          this.templatePath('public'),
+          this.destinationPath('public'),
+          {
+              appname: this.appname
+          }
+      )
     },
 
     projectfiles: function() {
