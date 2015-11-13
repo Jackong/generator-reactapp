@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const path = require('path')
 const DEBUG = (process.env.NODE_ENV !== 'production')
 
 module.exports = {
@@ -16,8 +17,8 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + '/public/js/',
-    publicPath: '/public/js/',
+    path: path.join(__dirname, 'public/js/'),
+    publicPath: '/js/',
     filename: '[name]/index.js',
     chunkFilename: '[name]/index.js',
   },
