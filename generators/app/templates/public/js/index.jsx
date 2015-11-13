@@ -1,4 +1,5 @@
 import React from 'react'
+import {render} from 'react-dom'
 import App from './components/app'
 
 
@@ -15,7 +16,7 @@ window.onerror = (msg, url, line, column, e) => {
 }
 
 try {
-    React.render(<App title='Hello <%= appname %>' />, document.body)
+    render(<App title='Hello <%= appname %>' />, document.getElementById('app'))
 } catch (e) {
     handleError(e)
 }

@@ -3,7 +3,7 @@ const DEBUG = (process.env.NODE_ENV !== 'production')
 
 module.exports = {
   entry: {
-    app: './index.jsx',
+    app: './public/js/index.jsx',
     vendor: [
       'react',
       'react-router',
@@ -33,7 +33,7 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loader: ['react-hot', 'babel?stage=0'],
+      loaders: ['react-hot', 'babel'],
       exclude: /(node_modules|bower_components)/,
     }]
   },

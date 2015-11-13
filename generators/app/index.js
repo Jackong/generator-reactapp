@@ -38,6 +38,10 @@ module.exports = yeoman.generators.Base.extend({
               appname: this.appname
           }
       )
+      this.fs.copy(
+          this.templatePath('.babelrc'),
+          this.destinationPath('.babelrc')
+      )
     },
 
     projectfiles: function() {

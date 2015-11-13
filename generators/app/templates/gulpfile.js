@@ -1,7 +1,7 @@
 const gulp = require('gulp')
 const hash = require('gulp-static-hash')
 const uglify = require('gulp-uglify')
-const webpack = require('gulp-webpack')
+const webpack = require('webpack-stream')
 const run = require('run-sequence')
 const config = require('./webpack.config')
 const DEBUG = (process.env.DEBUG !== 'production')
