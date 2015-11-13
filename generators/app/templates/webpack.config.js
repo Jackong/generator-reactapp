@@ -22,9 +22,7 @@ module.exports = {
     chunkFilename: '[name]/index.js',
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      Promise: 'bluebird'
-    }),
+    new webpack.ProvidePlugin({Promise: 'bluebird'}),
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor/app.js', ['app']),
   ],
   resolve: {
@@ -33,9 +31,19 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel'],
+      loader: 'babel',
       exclude: /(node_modules|bower_components)/,
     }]
+  },
+  externals: {
+     'react': 'React',
+     'react-dom': 'ReactDOM',
+     'react-router': 'ReactRouter',
+     'redux': 'Redux',
+     'history': 'History',
+     'react-redux': 'ReactRedux',
+     'bluebird': 'Promise',
+     'underscore': '_'
   },
   devtool: DEBUG && '#source-map',
   debug: DEBUG

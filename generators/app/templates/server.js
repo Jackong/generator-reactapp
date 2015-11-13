@@ -4,6 +4,19 @@ const config = require('./webpack.config')
 
 const PORT = process.env.PORT
 
+config.entry.vendor = config.entry.vendor.concat([
+    'webpack-dev-server/client?http://127.0.0.1:' + PORT,
+    'webpack/hot/only-dev-server'
+])
+
+config.plugins.push(new webpack.HotModuleReplacementPlugin())
+
+config.module.loaders.unshift(
+    {
+        test: /\.jsx?$/, loader: 'react-hot' ,exclude: /(node_modules|bower_components)/,
+    }
+)
+
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,

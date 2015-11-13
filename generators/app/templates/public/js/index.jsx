@@ -15,8 +15,18 @@ window.onerror = (msg, url, line, column, e) => {
     return true
 }
 
+let rootInstance = null
 try {
-    render(<App title='Hello <%= appname %>' />, document.getElementById('app'))
+    rootInstance = render(<App title='Hello <%= appname %>' />, document.getElementById('app'))
 } catch (e) {
     handleError(e)
+}
+
+if (module.hot) {
+    //dead code for production
+    require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
+        getRootInstances: () => {
+            return [rootInstance]
+        }
+    })
 }
