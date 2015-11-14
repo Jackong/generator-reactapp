@@ -13,7 +13,8 @@ module.exports = {
       'debug',
       'bluebird',
       'underscore',
-      'radium'
+      'radium',
+      'immutable'
     ]
   },
   output: {
@@ -44,7 +45,8 @@ module.exports = {
      'history': 'History',
      'react-redux': 'ReactRedux',
      'bluebird': 'Promise',
-     'underscore': '_'
+     'underscore': '_',
+     'immutable': 'Immutable'
   },
   devtool: DEBUG && '#source-map',
   debug: DEBUG
