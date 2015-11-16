@@ -4,7 +4,6 @@ const uglify = require('gulp-uglify')
 const webpack = require('webpack-stream')
 const run = require('run-sequence')
 const config = require('./webpack.config')
-const DEBUG = (process.env.DEBUG !== 'production')
 
 gulp.task('hash', () => {
     return gulp.src(['public/*.html'])
@@ -17,11 +16,11 @@ gulp.task('uglify', () => {
         .pipe(uglify({
         compress: {
             global_defs: {
-                DEBUG: DEBUG
+                DEBUG: false
             }
         }
     }))
-        .pipe(gulp.dest('public/js'))
+    .pipe(gulp.dest('public/js'))
 })
 
 gulp.task('webpack', () => {

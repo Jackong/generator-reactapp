@@ -6,10 +6,22 @@ import reducers from './reducers'
 
 const loggerMiddleware = createLogger()
 
-const createStoreWithMiddleware = applyMiddleware(
-    thunk,
-    promiseMiddleware,
-    loggerMiddleware
+let dev = []
+if (DEBUG) {
+    const { devTools, persistState } = require('redux-devtools')
+    dev = [
+        devTools(),
+        persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/))
+    ]
+}
+
+const createStoreWithMiddleware = compose(
+    applyMiddleware(
+        thunk,
+        promiseMiddleware,
+        loggerMiddleware
+    ),
+    ...dev
 )(createStore)
 
 const store = createStoreWithMiddleware(reducers)

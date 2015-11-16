@@ -16,12 +16,25 @@ window.onerror = (msg, url, line, column, e) => {
     handleError(e ? e : new Error(msg + '(' + url + '):' + line + '-' + column))
 }
 
+let dev = null
+if (DEBUG) {
+    const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react')
+    dev = (
+        <DebugPanel top right bottom>
+            <DevTools store={store} monitor={LogMonitor} />
+        </DebugPanel>
+    )
+}
+
 let rootInstance = null
 try {
     rootInstance = render((
-        <Provider store={store}>
-            <App/>
-        </Provider>
+        <div>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+            {dev}
+        </div>
     ), document.getElementById('app'))
 } catch (e) {
     handleError(e)
