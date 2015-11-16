@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "author": "jackong",
   "scripts": {
-    "start": "PORT=3000 node server.js"
+    "start": "PORT=3000 node server.js",
+    "test": "mocha --compilers jsx:babel-core/register --recursive public/js/test",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "react": "^0.14.2",
@@ -26,6 +28,8 @@
     "immutable": "^3.7.5"
   },
   "devDependencies": {
+    "mocha": "^2.3.4",
+    "chai": "^3.4.1",
     "babel-core": "^6.1.19",
     "babel-eslint": "^4.1.5",
     "eslint": "^1.9.0",
