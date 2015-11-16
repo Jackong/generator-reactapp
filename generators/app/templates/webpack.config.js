@@ -24,8 +24,11 @@ module.exports = {
     chunkFilename: '[name]/index.js',
   },
   plugins: [
-    new webpack.ProvidePlugin({Promise: 'bluebird'}),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor/app.js', ['app']),
+      new webpack.ProvidePlugin({
+          Promise: 'bluebird',
+          fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      }),
+      new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor/app.js', ['app']),
   ],
   resolve: {
     extensions: ['', '.json', '.node', '.js', '.jsx']
