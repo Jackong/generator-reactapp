@@ -1,7 +1,12 @@
-import {createStore, applyMiddleware} from 'redux'
+import { compose, createStore, applyMiddleware } from 'redux'
+
 import createLogger from 'redux-logger'
 import promiseMiddleware from 'redux-promise'
 import thunk from 'redux-thunk'
+
+import { reduxReactRouter } from 'redux-router'
+import createHistory from 'history/lib/createHashHistory'
+
 import reducers from './reducers'
 
 const loggerMiddleware = createLogger()
@@ -21,9 +26,10 @@ const createStoreWithMiddleware = compose(
         promiseMiddleware,
         loggerMiddleware
     ),
+    reduxReactRouter({
+        createHistory
+    }),
     ...dev
 )(createStore)
 
-const store = createStoreWithMiddleware(reducers)
-
-export default store
+export default createStoreWithMiddleware(reducers)

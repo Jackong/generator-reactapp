@@ -14,6 +14,7 @@
     "redux-actions": "^0.8.0-alpha",
     "redux-logger": "^2.0.4",
     "redux-promise": "^0.6.0-alpha",
+    "redux-router": "^1.0.0-beta4",
     "redux-thunk": "^1.0.0",
     "history": "^1.13.0",
     "radium": "^0.15.1",

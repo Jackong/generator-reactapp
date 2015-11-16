@@ -2,3 +2,4 @@ node_modules
 public/js/**/*.js
 public/js/**/*.js.map
 *.txt
+*.log

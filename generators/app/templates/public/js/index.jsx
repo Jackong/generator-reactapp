@@ -2,8 +2,7 @@ import React from 'react'
 import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 
-import App from './components/app'
-import store from  './store'
+import Root from './root'
 
 const handleError = e => {
     console.error('error', e, e.stack)
@@ -16,26 +15,9 @@ window.onerror = (msg, url, line, column, e) => {
     handleError(e ? e : new Error(msg + '(' + url + '):' + line + '-' + column))
 }
 
-let dev = null
-if (DEBUG) {
-    const { DevTools, DebugPanel, LogMonitor } = require('redux-devtools/lib/react')
-    dev = (
-        <DebugPanel top right bottom>
-            <DevTools store={store} monitor={LogMonitor} />
-        </DebugPanel>
-    )
-}
-
 let rootInstance = null
 try {
-    rootInstance = render((
-        <div>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-            {dev}
-        </div>
-    ), document.getElementById('app'))
+    rootInstance = render(<Root />, document.getElementById('app'))
 } catch (e) {
     handleError(e)
 }
