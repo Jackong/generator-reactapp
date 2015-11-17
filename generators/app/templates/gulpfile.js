@@ -1,14 +1,28 @@
 const gulp = require('gulp')
-const hash = require('gulp-static-hash')
+const rev = require('gulp-rev')
+const replace = require('gulp-rev-replace')
 const uglify = require('gulp-uglify')
 const webpack = require('webpack-stream')
 const run = require('run-sequence')
 const config = require('./webpack.config')
 
-gulp.task('hash', () => {
-    return gulp.src(['public/*.html'])
-        .pipe(hash({asset: 'public/js'}))
-        .pipe(gulp.dest('public'))
+const options = {
+    dist: 'public/dist'
+}
+
+gulp.task('rev', () => {
+    return gulp.src(['public/js/**/*.js'], {base: 'public'})
+    .pipe(rev())
+    .pipe(gulp.dest(options.dist))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(options.dist))
+})
+
+gulp.task('replace', ['rev'], () => {
+    const manifest = gulp.src(options.dist + '/rev-manifest.json')
+    return gulp.src('public/index.html')
+        .pipe(replace({manifest: manifest}))
+        .pipe(gulp.dest(options.dist))
 })
 
 gulp.task('uglify', () => {
@@ -30,9 +44,9 @@ gulp.task('webpack', () => {
 })
 
 gulp.task('build', cb => {
-    return run('webpack', 'uglify', 'hash', cb)
+    return run('webpack', 'uglify', 'replace', cb)
 })
 
-gulp.task('watch', ['webpack', 'hash'], () => {
-     gulp.watch('./public/js/**/*.jsx', ['webpack', 'hash'])
+gulp.task('watch', ['webpack'], () => {
+     gulp.watch('./public/js/**/*.jsx', ['webpack'])
 })
