@@ -2,8 +2,8 @@ import React, { PropTypes } from 'react'
 import {Provider} from 'react-redux'
 import {ReduxRouter} from 'redux-router'
 
-import store from  './store'
-import routes from './routes'
+import store from  '../store'
+import routes from '../routes'
 
 let dev = null
 if (DEBUG) {
