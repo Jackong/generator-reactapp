@@ -2,6 +2,7 @@
 const yeoman = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
+const mkdirp = require('mkdirp')
 
 module.exports = yeoman.generators.Base.extend({
   init: function() {
@@ -38,6 +39,7 @@ module.exports = yeoman.generators.Base.extend({
               appname: this.appname
           }
       )
+      mkdirp.sync(this.destinationPath('public/js/components/dumb'))
       this.fs.copy(
           this.templatePath('.babelrc'),
           this.destinationPath('.babelrc')

@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route } from 'react-router'
 
-import Index from './components/index'
-import About from './components/about'
-import App from './components/app'
+import Index from './components/smart/index'
+import About from './components/smart/about'
+import App from './components/smart/app'
 
 export default (
     <Route path='/' component={Index}>

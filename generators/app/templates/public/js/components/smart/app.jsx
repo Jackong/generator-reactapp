@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import {connect} from 'react-redux'
 import Radium from 'radium'
-import {changeTitle} from '../actions'
+import {changeTitle} from '../../actions'
 
 @connect(state => state)
 @Radium
