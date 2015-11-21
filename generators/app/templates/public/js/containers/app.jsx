@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { connect } from 'react-redux'
-import { pushState } from 'redux-router'
 
 @connect(state => ({}))
-class Index extends React.Component {
+class App extends React.Component {
     static propTypes = {
         children: PropTypes.node
     }
@@ -14,7 +13,7 @@ class Index extends React.Component {
             <h1>App</h1>
             <hr />
             <p>
-              <Link to='/app'>app</Link>
+              <Link to='/home'>home</Link>
             </p>
             <p>
               <Link to='/about'>about</Link>
@@ -26,4 +25,4 @@ class Index extends React.Component {
     }
 }
 
-export default Index
+export default App

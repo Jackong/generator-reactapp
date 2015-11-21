@@ -1,8 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
-import {Provider} from 'react-redux'
 
-import Root from './components/root'
+import Root from './containers/root'
 
 const handleError = e => {
     console.error('error', e, e.stack)

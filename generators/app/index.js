@@ -39,7 +39,7 @@ module.exports = yeoman.generators.Base.extend({
               appname: this.appname
           }
       )
-      mkdirp.sync(this.destinationPath('public/js/components/dumb'))
+      mkdirp.sync(this.destinationPath('public/js/components'))
       this.fs.copy(
           this.templatePath('.babelrc'),
           this.destinationPath('.babelrc')

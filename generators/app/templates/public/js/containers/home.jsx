@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react'
 import {connect} from 'react-redux'
 import Radium from 'radium'
-import {changeTitle} from '../../actions'
+import {changeTitle} from '../actions'
 
 @connect(state => state)
 @Radium
-class App extends React.Component {
+class Home extends React.Component {
     componentDidMount() {
         this.props.dispatch(changeTitle('<%= appname %>'))
     }
@@ -25,4 +25,4 @@ const styles = {
     }
 }
 
-export default App
+export default Home
