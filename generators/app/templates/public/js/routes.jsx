@@ -7,7 +7,7 @@ import About from './containers/about'
 
 export default (
     <Route path='/' component={App}>
-        <IndexRoute path='home' component={Home} />
+        <IndexRoute component={Home} />
         <Route path='about' component={About} />
     </Route>
 )

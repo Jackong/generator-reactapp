@@ -1,7 +1,7 @@
 import { compose, createStore, applyMiddleware } from 'redux'
 
 import createLogger from 'redux-logger'
-import promiseMiddleware from 'redux-promise'
+import promise from 'redux-promise'
 import thunk from 'redux-thunk'
 
 import { reduxReactRouter } from 'redux-router'
@@ -9,7 +9,7 @@ import createHistory from 'history/lib/createHashHistory'
 
 import reducers from './reducers'
 
-const loggerMiddleware = createLogger()
+const logger = createLogger()
 
 let dev = []
 if (DEBUG) {
@@ -23,8 +23,8 @@ if (DEBUG) {
 const createStoreWithMiddleware = compose(
     applyMiddleware(
         thunk,
-        promiseMiddleware,
-        loggerMiddleware
+        promise,
+        logger
     ),
     reduxReactRouter({
         createHistory

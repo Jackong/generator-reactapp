@@ -3,11 +3,11 @@ import {connect} from 'react-redux'
 import Radium from 'radium'
 import {changeTitle} from '../actions'
 
-@connect(state => state)
+@connect(state => state, {changeTitle})
 @Radium
 class Home extends React.Component {
     componentDidMount() {
-        this.props.dispatch(changeTitle('<%= appname %>'))
+        this.props.changeTitle('<%= appname %>')
     }
     render () {
         return (

@@ -31,11 +31,10 @@
   "devDependencies": {
     "mocha": "^2.3.4",
     "chai": "^3.4.1",
-    "babel-core": "^6.1.19",
     "babel-eslint": "^4.1.5",
     "eslint": "^1.9.0",
     "gulp": "^3.9.0",
-    "babel-loader": "^5.3.3",
+    "babel-loader": "^5.4.0",
     "redux-devtools": "^2.1.5",
     "webpack": "^1.12.4",
     "webpack-stream": "^2.1.1",
