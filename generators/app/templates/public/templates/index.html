@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%= o.htmlWebpackPlugin.options.title %}</title>
+    <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    {% for (var i=0; i<o.htmlWebpackPlugin.options.cdns.length; i++) { %}
+        <script src="{%=o.htmlWebpackPlugin.options.cdns[i]%}"></script>
+    {% } %}
+    <style>
+      body {
+        margin: 0;
+        background-color: #F5F5F5;
+      }
+      html {
+        font-size: 14.5px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      @media only screen and (min-width : 375px) {
+        html {
+          font-size: 17px;
+        }
+      }
+      @media only screen and (min-width : 414px) {
+        html {
+          font-size: 18.7px;
+        }
+      }
+      @media only screen and (min-width : 600px) {
+        html {
+          font-size: 27.2px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+      <div id="app"></div>
+  </body>
+</html>

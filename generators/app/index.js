@@ -20,9 +20,12 @@ module.exports = yeoman.generators.Base.extend({
             appname: this.appname
         }
       )
-      this.fs.copy(
+      this.fs.copyTpl(
           this.templatePath('webpack.config.js'),
-          this.destinationPath('webpack.config.js')
+          this.destinationPath('webpack.config.js'),
+          {
+            appname: this.appname
+          }
       )
       this.fs.copy(
           this.templatePath('server.js'),

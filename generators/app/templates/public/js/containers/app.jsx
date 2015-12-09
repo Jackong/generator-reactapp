@@ -13,7 +13,7 @@ class App extends React.Component {
             <h1>App</h1>
             <hr />
             <p>
-              <Link to='/home'>home</Link>
+              <Link to='/'>home</Link>
             </p>
             <p>
               <Link to='/about'>about</Link>
