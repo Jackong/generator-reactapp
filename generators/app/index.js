@@ -44,7 +44,7 @@ module.exports = yeoman.generators.Base.extend({
       )
       mkdirp.sync(this.destinationPath('public/js/components'))
       this.fs.copy(
-          this.templatePath('.babelrc'),
+          this.templatePath('babelrc'),
           this.destinationPath('.babelrc')
       )
     },
@@ -55,11 +55,11 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('.editorconfig')
       )
       this.fs.copy(
-        this.templatePath('.eslintrc'),
+        this.templatePath('eslintrc'),
         this.destinationPath('.eslintrc')
       )
       this.fs.copy(
-          this.templatePath('.gitignore'),
+          this.templatePath('gitignore'),
           this.destinationPath('.gitignore')
       )
     }
