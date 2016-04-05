@@ -11,9 +11,10 @@ if (DEBUG) {
   middlewares = middlewares.concat(require('./middlewares.dev').default)
 }
 
-const createStoreWithMiddleware = compose(
+export default createStore(
+  reducers,
+  compose(
     applyMiddleware(...middlewares),
     ...tools
-)(createStore)
-
-export default createStoreWithMiddleware(reducers)
+  )
+)
