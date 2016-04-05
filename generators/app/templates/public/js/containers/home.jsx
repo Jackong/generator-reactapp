@@ -7,7 +7,7 @@ import {changeTitle} from '../actions'
 @Radium
 class Home extends React.Component {
     componentDidMount() {
-        this.props.changeTitle('<%= appname %>')
+        this.props.changeTitle('ReactApp')
     }
     render () {
         return (

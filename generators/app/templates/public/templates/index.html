@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{%= o.htmlWebpackPlugin.options.title %}</title>
+    <title><%= htmlWebpackPlugin.options.title %></title>
     <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-    {% for (var i=0; i<o.htmlWebpackPlugin.options.cdns.length; i++) { %}
-        <script src="{%=o.htmlWebpackPlugin.options.cdns[i]%}"></script>
-    {% } %}
+  <% for (var i=0; i< htmlWebpackPlugin.options.cdns.length; i++) { %>
+    <script src="<%= htmlWebpackPlugin.options.cdns[i] %>"></script>
+  <% } %>
     <style>
       body {
         margin: 0;
