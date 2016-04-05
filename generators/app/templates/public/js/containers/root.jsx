@@ -12,10 +12,11 @@ import About from './about'
 const hashHistory = useRouterHistory(createHashHistory)({queryKey: false})
 const history = syncHistoryWithStore(hashHistory, store)
 
-let DevTools = null
+let devTools = null
 
 if (DEBUG) {
-  DevTools = require('./tools.dev').default
+  const DevTools = require('./tools.dev').default
+  devTools = <DevTools />
 }
 
 class Root extends React.Component {
@@ -29,7 +30,7 @@ class Root extends React.Component {
               <Route path='about' component={About}/>
             </Route>
           </Router>
-          <DevTools />
+          {devTools}
         </div>
       </Provider>
     )
