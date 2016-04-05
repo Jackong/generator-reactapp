@@ -8,7 +8,7 @@ const plugins = [
   new WebpackMd5Hash(),
   new HtmlWebpackPlugin({
     template: 'public/templates/index.html',
-    title: '<%= appname =>',
+    title: '<%= appname %>',
     inject: 'body',
     chunks: ['vendor', 'app'],
     filename: '../index.html',
