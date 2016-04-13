@@ -61,6 +61,7 @@ module.exports = {
       'history',
       'moment',
       'restful.js',
+      'isomorphic-fetch',
       'whatwg-fetch',
       'debug',
       'bluebird',
