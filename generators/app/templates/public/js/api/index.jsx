@@ -1,6 +1,24 @@
 import restful, { fetchBackend } from 'restful.js'
 import fetch from 'isomorphic-fetch'
 
+import code from './code'
+
 const API = '/api'
 
-export default restful(api, fetchBackend(fetch))
+export default url => {
+  const api = restful(url, fetchBackend(fetch))
+
+  api.addErrorInterceptor((error, config) => {
+    return Promise.reject(error)
+  })
+
+  api.addResponseInterceptor((response, config) => {
+    const {data, statusCode} = response
+    if (data.code === code.SUCCESS) {
+      return response
+    }
+    return Promise.reject(new Error(`${config.method} ${config.url} => ${statusCode} ${JSON.stringify(data)}`))
+  })
+
+  return api
+}

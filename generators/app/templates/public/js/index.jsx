@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 
 import Root from './containers/root'
 
-const handleError = e => {
+window.handleError = e => {
     console.error('error', e, e.stack)
     alert(e.stack)
 }
