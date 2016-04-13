@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=development gulp webpack && PORT=3000 node server.js",
     "build": "NODE_ENV=production gulp webpack",
-    "test": "mocha --compilers jsx:babel-core/register --recursive public/js/test",
+    "test": "mocha --compilers jsx:babel-core/register --require public/js/test/setup.js --recursive public/js/test/**/*.jsx",
     "test:watch": "npm test -- --watch"
   },
   "dependencies": {
@@ -41,6 +41,7 @@
     "eslint": "^2.7.0",
     "gulp": "^3.9.1",
     "html-webpack-plugin": "^2.15.0",
+    "jsdom": "^8.3.1",
     "mocha": "^2.4.5",
     "react-hot-loader": "^1.3.0",
     "redux-devtools": "^3.2.0",

@@ -1,5 +1,5 @@
 node_modules
-public/build
-public/index.html
+public/js/build
+public/*.html
 *.txt
 *.log
