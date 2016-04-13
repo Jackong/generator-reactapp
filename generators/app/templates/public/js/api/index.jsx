@@ -1,6 +1,6 @@
 import restful, { fetchBackend } from 'restful.js'
-import fetch from 'whatwg-fetch'
+import fetch from 'isomorphic-fetch'
 
-window.fetch = fetch
+const API = '/api'
 
-export default restful('/api', fetchBackend(window.fetch))
+export default restful(api, fetchBackend(fetch))

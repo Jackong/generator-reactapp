@@ -1,4 +1,5 @@
 import {expect} from 'chai'
+import nock from 'nock'
 import * as actions from '../actions'
 
 describe('actions', () => {
