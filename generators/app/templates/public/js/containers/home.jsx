@@ -3,16 +3,15 @@ import {connect} from 'react-redux'
 import Radium from 'radium'
 import {changeTitle} from '../actions'
 
-@connect(state => state, {changeTitle})
 @Radium
-class Home extends React.Component {
-    componentDidMount() {
-        this.props.changeTitle('ReactApp')
+export class Home extends React.Component {
+    componentWillMount() {
+      this.props.changeTitle('ReactApp')
     }
     render () {
-        return (
-            <div style={[styles.base, styles.larger]}>Hello {this.props.title}</div>
-        )
+      return (
+          <div style={[styles.base, styles.larger]}>Hello ReactApp</div>
+      )
     }
 }
 
@@ -25,4 +24,4 @@ const styles = {
     }
 }
 
-export default Home
+export default connect(null, {changeTitle})(Home)
