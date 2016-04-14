@@ -4,6 +4,7 @@ const path = require('path')
 const config = require('./webpack.config')
 
 const PORT = process.env.PORT
+const MOCK_API = !!process.env.MOCK_API
 
 config.entry.vendor = config.entry.vendor.concat([
   'webpack-dev-server/client?http://127.0.0.1:' + PORT,
@@ -22,7 +23,16 @@ new WebpackDevServer(webpack(config), {
   contentBase: 'public',
   publicPath: config.output.publicPath,
   hot: true,
-  historyApiFallback: true
+  historyApiFallback: true,
+  proxy: MOCK_API && {
+    '/api*': {
+      secure: false,
+      bypass: (req, res) => {
+        req.method = 'GET'
+        return `${req.path}.json`
+      }
+    },
+  },
 }).listen(PORT, '0.0.0.0', (err, result) => {
   if (err) {
     console.error(err)
