@@ -11,7 +11,7 @@ const plugins = [
     title: '<%= appname %>',
     inject: 'body',
     chunks: ['vendor', 'app'],
-    filename: '../index.html',
+    filename: './index.html',
     cdns: DEBUG ? [] : [
       '//cdn.bootcss.com/react/0.14.7/react.min.js',
       '//cdn.bootcss.com/react/0.14.7/react-dom.min.js',
@@ -71,9 +71,9 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, 'public/js/'),
-    publicPath: '/js/',
-    filename: DEBUG ? 'build/[name].js' : 'build/[name].[chunkhash].js',
+    path: path.join(__dirname, 'public/'),
+    publicPath: '/',
+    filename: DEBUG ? 'js/[name].js' : 'js/[name].[chunkhash].js',
   },
   plugins: plugins,
   resolve: {
