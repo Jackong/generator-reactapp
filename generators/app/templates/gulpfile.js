@@ -6,7 +6,7 @@ const config = require('./webpack.config')
 gulp.task('webpack', () => {
     return gulp.src('./public/js/index.jsx')
         .pipe(webpack(config))
-        .pipe(gulp.dest('./public/js/'))
+        .pipe(gulp.dest('./public/build/'))
 })
 
 gulp.task('watch', ['webpack'], () => {
