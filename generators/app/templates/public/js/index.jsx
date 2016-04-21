@@ -4,14 +4,14 @@ import {render} from 'react-dom'
 import Root from './containers/root'
 
 window.handleError = e => {
-    console.error('error', e, e.stack)
-    alert(e.stack)
+  console.error('error', e, e.stack)
+  alert(e.stack)
 }
 
 Promise.onPossiblyUnhandledRejection(handleError)
 
 window.onerror = (msg, url, line, column, e) => {
-    handleError(e ? e : new Error(msg + '(' + url + '):' + line + '-' + column))
+  handleError(e ? e : new Error(`${msg}(${url}):${line}-${column}`)
 }
 
 let rootInstance = null
