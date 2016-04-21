@@ -3,9 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maxinum-scale=1, user-scalable=no">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
   <% for (var i=0; i< htmlWebpackPlugin.options.cdns.length; i++) { %>
     <script src="<%= htmlWebpackPlugin.options.cdns[i] %>"></script>
   <% } %>
@@ -15,24 +14,24 @@
         background-color: #F5F5F5;
       }
       html {
-        font-size: 14.5px;
+        font-size: 17px;
       }
       * {
         box-sizing: border-box;
       }
       @media only screen and (min-width : 375px) {
         html {
-          font-size: 17px;
+          font-size: 20px;
         }
       }
       @media only screen and (min-width : 414px) {
         html {
-          font-size: 18.7px;
+          font-size: 22px;
         }
       }
       @media only screen and (min-width : 600px) {
         html {
-          font-size: 27.2px;
+          font-size: 32px;
         }
       }
     </style>

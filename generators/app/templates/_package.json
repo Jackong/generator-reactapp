@@ -4,6 +4,7 @@
   "author": "jackong",
   "scripts": {
     "start": "MOCK_API=/api* NODE_ENV=development PORT=3000 node server.js",
+    "dev": "NODE_ENV=development gulp webpack",
     "build": "NODE_ENV=production gulp webpack",
     "test": "mocha --compilers jsx:babel-core/register --require public/js/test/setup.jsx --recursive public/js/test/",
     "test:watch": "npm test -- --watch"
@@ -18,15 +19,12 @@
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.1",
     "redux-thunk": "^2.0.1",
-    "reselect": "^2.2.1",
     "radium": "^0.17.1",
     "bluebird": "^3.3.4",
-    "debug": "^2.2.0",
     "history": "^2.0.1",
     "immutable": "^3.7.6",
     "moment": "^2.12.0",
     "restful.js": "^0.9.6",
-    "underscore": "^1.8.3",
     "isomorphic-fetch": "^2.2.1",
     "whatwg-fetch": "^0.11.0"
   },
