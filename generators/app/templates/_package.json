@@ -1,11 +1,11 @@
 {
   "name": "<%= appname %>",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "jackong",
   "scripts": {
     "start": "MOCK_API=/api* NODE_ENV=development PORT=3000 node server.js",
-    "dev": "NODE_ENV=development gulp webpack",
-    "build": "NODE_ENV=production gulp webpack",
+    "dev": "NODE_ENV=development gulp build",
+    "prod": "NODE_ENV=production gulp build",
     "test": "mocha --compilers jsx:babel-core/register --require public/js/test/setup.jsx --recursive public/js/test/",
     "test:watch": "npm test -- --watch"
   },
@@ -39,6 +39,7 @@
     "chai": "^3.5.0",
     "eslint": "^2.7.0",
     "gulp": "^3.9.1",
+    "del": "^2.2.0",
     "html-webpack-plugin": "^2.15.0",
     "jsdom": "^8.3.1",
     "mocha": "^2.4.5",
@@ -51,7 +52,6 @@
     "redux-logger": "^2.0.4",
     "redux-mock-store": "^1.0.2",
     "request": "^2.71.0",
-    "run-sequence": "^1.1.5",
     "sinon": "^1.17.3",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
