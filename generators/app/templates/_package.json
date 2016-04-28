@@ -1,6 +1,6 @@
 {
   "name": "<%= appname %>",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "author": "jackong",
   "scripts": {
     "start": "MOCK_API=/api* NODE_ENV=development PORT=3000 node server.js",
