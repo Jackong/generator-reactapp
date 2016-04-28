@@ -11,9 +11,9 @@ gulp.task('clean', () => del([
 ]))
 
 gulp.task('webpack', ['clean'], () => {
-    return gulp.src('./public/js/index.jsx')
-        .pipe(webpack(config))
-        .pipe(gulp.dest(buildDir))
+  return gulp.src('./public/js/index.jsx')
+      .pipe(webpack(config))
+      .pipe(gulp.dest(buildDir))
 })
 
 gulp.task('asset', ['clean'], () => {

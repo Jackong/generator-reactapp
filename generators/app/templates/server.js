@@ -2,11 +2,30 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const path = require('path')
 const config = require('./webpack.config')
+const os = require('os');
 
+function getMyIP(version,internal){
+  version = version || 'IPv4'
+  internal = internal || false
+  var interfaces = os.networkInterfaces()
+  for(var key in interfaces) {
+    var addresses = interfaces[key]
+    for(var i = 0; i < addresses.length; i++){
+      var address = addresses[i]
+      if(address.internal !== internal || address.family !== version){
+        continue
+      }
+      return address.address
+    }
+  }
+  return 'localhost'
+}
+
+const IP = getMyIP()
 const PORT = process.env.PORT
 
 config.entry.vendor = config.entry.vendor.concat([
-  'webpack-dev-server/client?http://127.0.0.1:' + PORT,
+  `webpack-dev-server/client?http://${IP}:${PORT}`,
   'webpack/hot/only-dev-server'
 ])
 
