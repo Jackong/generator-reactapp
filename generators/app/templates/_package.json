@@ -7,11 +7,11 @@
     "dev": "NODE_ENV=development gulp build",
     "prod": "NODE_ENV=production gulp build",
     "test": "mocha --compilers jsx:babel-core/register --require public/js/test/setup.jsx --recursive public/js/test/",
-    "test:watch": "npm test -- --watch"
+    "testing": "npm test -- --watch"
   },
   "dependencies": {
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
     "react-redux": "^4.4.1",
     "react-router": "^1.0.0",
     "redux": "^3.3.1",
