@@ -1,27 +1,10 @@
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const path = require('path')
+
 const config = require('./webpack.config')
-const os = require('os');
 
-function getMyIP(version,internal){
-  version = version || 'IPv4'
-  internal = internal || false
-  var interfaces = os.networkInterfaces()
-  for(var key in interfaces) {
-    var addresses = interfaces[key]
-    for(var i = 0; i < addresses.length; i++){
-      var address = addresses[i]
-      if(address.internal !== internal || address.family !== version){
-        continue
-      }
-      return address.address
-    }
-  }
-  return 'localhost'
-}
-
-const IP = getMyIP()
+const IP = '0.0.0.0'
 const PORT = process.env.PORT
 
 config.entry.vendor = config.entry.vendor.concat([
@@ -51,10 +34,10 @@ new WebpackDevServer(webpack(config), {
       }
     },
   },
-}).listen(PORT, '0.0.0.0', (err, result) => {
+}).listen(PORT, IP, (err, result) => {
   if (err) {
     console.error(err)
     process.exit(1)
   }
-  console.log('Listening at 0.0.0.0:' + PORT)
+  console.log(`Listening at ${IP}:${PORT}`)
 })

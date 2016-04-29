@@ -17,6 +17,8 @@
 [gittip-image]: https://img.shields.io/gratipay/Jackong.svg
 [gittip-url]: https://gratipay.com/~Jackong
 
+[![NPM](https://nodei.co/npm/generator-reactapp.png?downloads=true)](https://nodei.co/npm/generator-reactapp/)
+
 ---
 
 ## What

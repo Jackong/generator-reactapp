@@ -6,7 +6,7 @@
     "start": "MOCK_API=/api* NODE_ENV=development PORT=3000 node server.js",
     "dev": "NODE_ENV=development gulp build",
     "prod": "NODE_ENV=production gulp build",
-    "test": "mocha --compilers jsx:babel-core/register --require public/js/test/setup.jsx --recursive public/js/test/",
+    "test": "NODE_ENV=production mocha --compilers jsx:babel-core/register --require public/js/test/setup.jsx --recursive public/js/test/",
     "testing": "npm test -- --watch"
   },
   "dependencies": {
