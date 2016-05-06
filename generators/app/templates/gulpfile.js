@@ -17,7 +17,7 @@ gulp.task('webpack', ['clean'], () => {
 })
 
 gulp.task('asset', ['clean'], () => {
-  return gulp.src(['./public/images/**/*', {base: 'public'}])
+  return gulp.src(['./public/images/**/*'], {base: 'public'})
   .pipe(gulp.dest('./public/build/'))
 })
 
