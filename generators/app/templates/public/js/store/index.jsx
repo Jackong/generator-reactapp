@@ -6,7 +6,8 @@ import {routerMiddleware} from 'react-router-redux'
 
 import reducers from '../reducers'
 
-const hashHistory = useRouterHistory(createHashHistory)({queryKey: false})
+export const hashHistory = useRouterHistory(createHashHistory)({queryKey: false})
+
 let tools = []
 let middlewares = [thunk, routerMiddleware(hashHistory)]
 
