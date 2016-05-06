@@ -11,7 +11,7 @@ window.handleError = e => {
 Promise.onPossiblyUnhandledRejection(handleError)
 
 window.onerror = (msg, url, line, column, e) => {
-  handleError(e ? e : new Error(`${msg}(${url}):${line}-${column}`)
+  handleError(e ? e : new Error(`${msg}(${url}):${line}-${column}`))
 }
 
 let rootInstance = null
