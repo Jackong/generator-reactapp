@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react'
 import {Provider} from 'react-redux'
-import {Router, Route, IndexRoute} from 'react-router'
+import {Router, Route, IndexRoute, hashHistory} from 'react-router'
 import {syncHistoryWithStore} from 'react-router-redux'
 
-import store, {hashHistory} from '../store'
+import store from '../store'
 import App from './app'
 import Home from './home'
 import About from './about'
