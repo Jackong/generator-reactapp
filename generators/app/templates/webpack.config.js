@@ -1,8 +1,8 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const WebpackMd5Hash = require('webpack-md5-hash')
-const DEBUG = (process.env.NODE_ENV !== 'production')
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const DEBUG = (process.env.NODE_ENV !== 'production');
 
 const plugins = [
   new WebpackMd5Hash(),
@@ -27,22 +27,24 @@ const plugins = [
     ],
   }),
   new webpack.ProvidePlugin({
-      Promise: 'bluebird'
+    Promise: 'bluebird',
   }),
-  new webpack.optimize.CommonsChunkPlugin({name: 'vendor', chunks: ['app']}),
+  new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', chunks: ['app'] }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
-    DEBUG: DEBUG,
+    DEBUG,
   }),
-]
+];
 
-!DEBUG && plugins.push(
-  new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false,
-    },
-  })
-)
+if (!DEBUG) {
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+    })
+  );
+}
 
 module.exports = {
   entry: {
@@ -64,36 +66,37 @@ module.exports = {
       'bluebird',
       'radium',
       'immutable',
-    ]
+      'debug',
+    ],
   },
   output: {
     path: path.join(__dirname, 'public/'),
     publicPath: '',
     filename: DEBUG ? 'js/[name].js' : 'js/[name].[chunkhash].js',
   },
-  plugins: plugins,
+  plugins,
   resolve: {
-    extensions: ['', '.json', '.node', '.js', '.jsx']
+    extensions: ['', '.json', '.node', '.js', '.jsx'],
   },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       loader: 'babel',
       exclude: /(node_modules|bower_components)/,
-    }]
+    }],
   },
   externals: DEBUG ? {} : {
-     'react': 'React',
-     'react-dom': 'ReactDOM',
-     'react-router': 'ReactRouter',
-     'redux': 'Redux',
-     'history': 'History',
-     'react-redux': 'ReactRedux',
-     'bluebird': 'Promise',
-     'immutable': 'Immutable',
-     'moment': 'moment',
-     'whatwg-fetch': 'fetch',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'react-router': 'ReactRouter',
+    redux: 'Redux',
+    history: 'History',
+    'react-redux': 'ReactRedux',
+    bluebird: 'Promise',
+    immutable: 'Immutable',
+    moment: 'moment',
+    'whatwg-fetch': 'fetch',
   },
   devtool: DEBUG && '#source-map',
-  debug: DEBUG
-}
+  debug: DEBUG,
+};
