@@ -1,11 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
 const DEBUG = (process.env.NODE_ENV !== 'production');
 
 const plugins = [
-  new WebpackMd5Hash(),
   new HtmlWebpackPlugin({
     template: 'public/templates/index.html',
     title: '<%= appname %>',
@@ -29,7 +27,7 @@ const plugins = [
   new webpack.ProvidePlugin({
     Promise: 'bluebird',
   }),
-  new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', chunks: ['app'] }),
+  new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', chunks: ['libs', 'app'] }),
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     DEBUG,
@@ -48,8 +46,10 @@ if (!DEBUG) {
 
 module.exports = {
   entry: {
-    app: './public/js/index.jsx',
-    vendor: [
+    app: [
+      './src/js/index.jsx',
+    ],
+    libs: [
       'react',
       'react-dom',
       'react-redux',
@@ -70,9 +70,9 @@ module.exports = {
     ],
   },
   output: {
-    path: path.join(__dirname, 'public/'),
+    path: path.join(__dirname, 'src/'),
     publicPath: '',
-    filename: DEBUG ? 'js/[name].js' : 'js/[name].[chunkhash].js',
+    filename: 'js/[name].js',
   },
   plugins,
   resolve: {

@@ -11,7 +11,7 @@ import About from './about';
 const history = syncHistoryWithStore(hashHistory, store);
 
 /*  global  DEBUG*/
-const DevTools = DEBUG ? require('./tools.dev').default : require('./tools');
+const DevTools = DEBUG ? require('./tools.dev').default : require('./tools').default;
 
 class Root extends React.Component {
   render() {

@@ -10,7 +10,7 @@ const config = require('./webpack.config');
 const IP = '0.0.0.0';
 const PORT = process.env.PORT;
 
-config.entry.vendor = config.entry.vendor.concat([
+config.entry.app = config.entry.app.concat([
   `webpack-dev-server/client?http://${IP}:${PORT}`,
   'webpack/hot/only-dev-server',
 ]);

@@ -17,7 +17,7 @@ window.onerror = (msg, url, line, column, e) => {
 };
 
 try {
-  render(<Root />, document.getElementById('app'));
+  render(<Root />, document.getElementById('root'));
 } catch (e) {
   window.handleError(e);
 }
