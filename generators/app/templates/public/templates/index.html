@@ -5,14 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
   <% for (var i=0; i< htmlWebpackPlugin.options.cdns.length; i++) { %>
     <script src="<%= htmlWebpackPlugin.options.cdns[i] %>"></script>
   <% } %>
     <style>
-      body {
-        margin: 0;
-        background-color: #F5F5F5;
-      }
       html {
         font-size: 17px;
 
@@ -38,6 +35,11 @@
       @media only screen and (min-width : 600px) {
         html {
           font-size: 32px;
+        }
+      }
+      @media only screen and (min-width : 768px) {
+        html {
+          font-size: 41px;
         }
       }
     </style>

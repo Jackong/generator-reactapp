@@ -1,6 +1,6 @@
 {
   "name": "generator-reactapp",
-  "version": "1.2.16",
+  "version": "1.2.17",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -34,8 +34,13 @@
     "yosay": "^1.1.1"
   },
   "devDependencies": {
-    "babel-eslint": "^4.1.5",
-    "eslint": "^1.9.0",
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1",
     "mocha": "*"
   }
 }

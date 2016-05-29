@@ -1,24 +1,27 @@
-const webpack = require('webpack')
-const WebpackDevServer = require('webpack-dev-server')
-const path = require('path')
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const debug = require('debug');
 
-const config = require('./webpack.config')
+const error = debug('server:error');
+const info = debug('server:info');
 
-const IP = '0.0.0.0'
-const PORT = process.env.PORT
+const config = require('./webpack.config');
+
+const IP = '0.0.0.0';
+const PORT = process.env.PORT;
 
 config.entry.vendor = config.entry.vendor.concat([
   `webpack-dev-server/client?http://${IP}:${PORT}`,
-  'webpack/hot/only-dev-server'
-])
+  'webpack/hot/only-dev-server',
+]);
 
-config.plugins.push(new webpack.HotModuleReplacementPlugin())
+config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 config.module.loaders.unshift({
   test: /\.jsx?$/,
   loader: 'react-hot',
   exclude: /(node_modules|bower_components)/,
-})
+});
 
 new WebpackDevServer(webpack(config), {
   contentBase: 'public',
@@ -28,16 +31,17 @@ new WebpackDevServer(webpack(config), {
   proxy: {
     [process.env.MOCK_API]: {
       secure: false,
-      bypass: (req, res) => {
-        req.method = 'GET'
-        return `${req.path}.json`
-      }
+      bypass: (req) => {
+        /*  eslint no-param-reassign: ["error", { "props": false }] */
+        req.method = 'GET';
+        return `${req.path}.json`;
+      },
     },
   },
-}).listen(PORT, IP, (err, result) => {
+}).listen(PORT, IP, (err) => {
   if (err) {
-    console.error(err)
-    process.exit(1)
+    error(err);
+    process.exit(1);
   }
-  console.log(`Listening at ${IP}:${PORT}`)
-})
+  info(`Listening at ${IP}:${PORT}`);
+});
