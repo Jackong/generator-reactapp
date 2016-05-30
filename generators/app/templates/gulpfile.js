@@ -26,6 +26,7 @@ gulp.task('asset', ['clean'], () => {
 gulp.task('rev', ['asset', 'webpack'], () => {
   const revAll = new RevAll({
     dontRenameFile: ['index.html'],
+    dontSearchFile: [/vendor\.js/],
   });
   return gulp.src([`${buildDir}/**`])
   .pipe(revAll.revision())
