@@ -5,7 +5,7 @@ const DEBUG = (process.env.NODE_ENV !== 'production');
 
 const plugins = [
   new HtmlWebpackPlugin({
-    template: 'public/templates/index.html',
+    template: 'src/templates/index.html',
     title: '<%= appname %>',
     inject: 'body',
     chunks: ['vendor', 'app'],
@@ -47,7 +47,7 @@ if (!DEBUG) {
 module.exports = {
   entry: {
     app: [
-      './src/js/index.jsx',
+      './src/js/index.js',
     ],
     libs: [
       'react',
@@ -76,11 +76,11 @@ module.exports = {
   },
   plugins,
   resolve: {
-    extensions: ['', '.json', '.node', '.js', '.jsx'],
+    extensions: ['', '.json', '.node', '.js'],
   },
   module: {
     loaders: [{
-      test: /\.jsx?$/,
+      test: /\.js?$/,
       loader: 'babel',
       exclude: /(node_modules|bower_components)/,
     }],

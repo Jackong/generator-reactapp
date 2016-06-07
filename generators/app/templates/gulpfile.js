@@ -13,7 +13,7 @@ gulp.task('clean', () => del([
 ]));
 
 gulp.task('webpack', ['clean'], () => {
-  return gulp.src('./src/js/index.jsx')
+  return gulp.src('./src/js/index.js')
   .pipe(webpack(config))
   .pipe(gulp.dest(buildDir));
 });

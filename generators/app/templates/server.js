@@ -18,7 +18,7 @@ config.entry.app = config.entry.app.concat([
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 config.module.loaders.unshift({
-  test: /\.jsx?$/,
+  test: /\.js?$/,
   loader: 'react-hot',
   exclude: /(node_modules|bower_components)/,
 });

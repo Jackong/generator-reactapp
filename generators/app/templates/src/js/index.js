@@ -16,6 +16,10 @@ window.onerror = (msg, url, line, column, e) => {
   window.handleError(e || new Error(`${msg}(${url}):${line}-${column}`));
 };
 
+if (module.hot) {
+  module.hot.accept();
+}
+
 try {
   render(<Root />, document.getElementById('root'));
 } catch (e) {
