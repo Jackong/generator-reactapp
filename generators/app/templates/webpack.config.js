@@ -11,16 +11,16 @@ const plugins = [
     chunks: ['vendor', 'app'],
     filename: './index.html',
     cdns: DEBUG ? [] : [
+      <% if (useReact) { %>
       '//cdn.bootcss.com/react/0.14.7/react.min.js',
       '//cdn.bootcss.com/react/0.14.7/react-dom.min.js',
       '//cdn.bootcss.com/react-router/2.0.9-rc4/ReactRouter.min.js',
       '//cdn.bootcss.com/history/2.0.1/History.min.js',
       '//cdn.bootcss.com/redux/3.3.1/redux.min.js',
       '//cdn.bootcss.com/react-redux/4.4.0/react-redux.min.js',
-      '//cdn.bootcss.com/bluebird/3.3.3/bluebird.min.js',
       '//cdn.bootcss.com/immutable/3.7.6/immutable.min.js',
-      '//cdn.bootcss.com/moment.js/2.11.2/moment.min.js',
-      '//cdn.bootcss.com/moment.js/2.11.2/locale/zh-cn.js',
+      <% } %>
+      '//cdn.bootcss.com/bluebird/3.3.3/bluebird.min.js',
       '//cdn.bootcss.com/fetch/0.11.0/fetch.min.js',
     ],
   }),
@@ -50,6 +50,7 @@ module.exports = {
       './src/js/index.js',
     ],
     libs: [
+      <% if (useReact) { %>
       'react',
       'react-dom',
       'react-redux',
@@ -59,13 +60,13 @@ module.exports = {
       'redux-actions',
       'react-router-redux',
       'history',
-      'moment',
+      'radium',
+      'immutable',
+      <% } %>
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
       'bluebird',
-      'radium',
-      'immutable',
       'debug',
     ],
   },
@@ -75,9 +76,6 @@ module.exports = {
     filename: 'js/[name].js',
   },
   plugins,
-  resolve: {
-    extensions: ['', '.json', '.node', '.js'],
-  },
   module: {
     loaders: [{
       test: /\.js?$/,
@@ -86,15 +84,16 @@ module.exports = {
     }],
   },
   externals: DEBUG ? {} : {
+    <% if (useReact) { %>
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-router': 'ReactRouter',
     redux: 'Redux',
-    history: 'History',
     'react-redux': 'ReactRedux',
-    bluebird: 'Promise',
+    history: 'History',
     immutable: 'Immutable',
-    moment: 'moment',
+    <% } %>
+    bluebird: 'Promise',
     'whatwg-fetch': 'fetch',
   },
   devtool: DEBUG && '#source-map',
