@@ -1,26 +1,29 @@
 import restful, { fetchBackend } from 'restful.js';
 import fetch from 'isomorphic-fetch';
+import qs from 'query-string';
 
 import code from './code';
+import endpoint from './endpoint';
+import env from '../constants/env';
 
-export const API = '/api';
+const query = qs.parse(window.location.search);
 
-export default url => {
-  const api = restful(url, fetchBackend(fetch));
+const url = endpoint[query.env || env.PROD];
 
-  api.addErrorInterceptor((error) => {
-    return Promise.reject(error);
-  });
+const api = restful(url, fetchBackend(fetch));
 
-  api.addResponseInterceptor((response, config) => {
-    const { data, statusCode } = response;
-    if (data.code === code.SUCCESS) {
-      return response;
-    }
-    return Promise.reject(
-      new Error(`${config.method} ${config.url} => ${statusCode} ${JSON.stringify(data)}`)
-    );
-  });
+api.addErrorInterceptor((error) => {
+  return Promise.reject(error);
+});
 
-  return api;
-};
+api.addResponseInterceptor((response, config) => {
+  const { data, statusCode } = response;
+  if (data.code === code.SUCCESS) {
+    return response;
+  }
+  return Promise.reject(
+    new Error(`${config.method} ${config.url} => ${statusCode} ${JSON.stringify(data)}`)
+  );
+});
+
+export default api;

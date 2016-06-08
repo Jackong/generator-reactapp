@@ -59,21 +59,28 @@ module.exports = yeoman.Base.extend({
         this.templatePath('gulpfile.js'),
         this.destinationPath('gulpfile.js')
       );
+      this.fs.copy(
+        this.templatePath('src/api'),
+        this.destinationPath('src/api')
+      );
+      this.fs.copy(
+        this.templatePath('src/js/constants'),
+        this.destinationPath('src/js/constants')
+      );
+      this.fs.copy(
+        this.templatePath('src/js/api'),
+        this.destinationPath('src/js/api')
+      );
+      this.fs.copy(
+        this.templatePath('src/templates'),
+        this.destinationPath('src/templates')
+      );
       if (this.useReact) {
         this.fs.copy(
           this.templatePath('src'),
           this.destinationPath('src')
         );
         mkdirp.sync(this.destinationPath('src/js/components'));
-      } else {
-        this.fs.copy(
-          this.templatePath('src/js/api'),
-          this.destinationPath('src/js/api')
-        );
-        this.fs.copy(
-          this.templatePath('src/templates'),
-          this.destinationPath('src/templates')
-        );
       }
       this.fs.copyTpl(
         this.templatePath('src/js/index.js'),

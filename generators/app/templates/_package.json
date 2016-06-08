@@ -4,10 +4,12 @@
   "author": "jackong",
   "scripts": {
     "start": "MOCK_API=/api* NODE_ENV=development DEBUG=server:* PORT=3000 node server.js",
+    <% if (useReact) { %>
+    "test": "NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/js/test/setup.js --recursive src/js/test/",
+    "testing": "npm test -- --watch",
+    <% } %>
     "dev": "NODE_ENV=development gulp build",
-    "prod": "NODE_ENV=production gulp build",
-    "test": "NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/js/test/setup.jsx --recursive src/js/test/",
-    "testing": "npm test -- --watch"
+    "prod": "NODE_ENV=production gulp build"
   },
   "dependencies": {
     <% if (useReact) { %>
@@ -24,6 +26,7 @@
     "immutable": "^3.7.6",
     "history": "^2.0.1",
     <% } %>
+    "query-string": "^4.2.1",
     "bluebird": "^3.3.4",
     "restful.js": "^0.9.6",
     "isomorphic-fetch": "^2.2.1",
