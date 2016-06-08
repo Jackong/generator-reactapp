@@ -3,25 +3,52 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const mkdirp = require('mkdirp');
 
-module.exports = yeoman.generators.Base.extend({
-  init: function() {
+module.exports = yeoman.Base.extend({
+  init() {
     this.log(yosay(
       `Welcome to the impeccable ${chalk.red('Reactapp')} generator!`
     ));
     this.appname = this.appname.replace(/\s/g, '-');
   },
+  prompting() {
+    const done = this.async();
+    const prompts = [{
+      type: 'checkbox',
+      name: 'features',
+      message: 'What more would you like?',
+      choices: [{
+        name: 'React',
+        value: 'useReact',
+        checked: true,
+      }],
+    }];
+
+    this.prompt(prompts, function (answers) {
+      const features = answers.features;
+
+      function hasFeature(feat) {
+        return features && features.indexOf(feat) !== -1;
+      }
+
+      this.useReact = hasFeature('useReact');
+
+      done();
+    }.bind(this));
+  },
   writing: {
-    app: function() {
+    app() {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'), {
           appname: this.appname,
+          useReact: this.useReact,
         }
       );
       this.fs.copyTpl(
         this.templatePath('webpack.config.js'),
         this.destinationPath('webpack.config.js'), {
           appname: this.appname,
+          useReact: this.useReact,
         }
       );
       this.fs.copy(
@@ -33,17 +60,42 @@ module.exports = yeoman.generators.Base.extend({
         this.destinationPath('gulpfile.js')
       );
       this.fs.copy(
-        this.templatePath('src'),
-        this.destinationPath('src')
+        this.templatePath('src/api'),
+        this.destinationPath('src/api')
       );
-      mkdirp.sync(this.destinationPath('public/js/components'));
+      this.fs.copy(
+        this.templatePath('src/js/constants'),
+        this.destinationPath('src/js/constants')
+      );
+      this.fs.copy(
+        this.templatePath('src/js/api'),
+        this.destinationPath('src/js/api')
+      );
+      this.fs.copy(
+        this.templatePath('src/templates'),
+        this.destinationPath('src/templates')
+      );
+      if (this.useReact) {
+        this.fs.copy(
+          this.templatePath('src'),
+          this.destinationPath('src')
+        );
+        mkdirp.sync(this.destinationPath('src/js/components'));
+      }
+      this.fs.copyTpl(
+        this.templatePath('src/js/index.js'),
+        this.destinationPath('src/js/index.js'),
+        {
+          useReact: this.useReact,
+        }
+      );
       this.fs.copy(
         this.templatePath('babelrc'),
         this.destinationPath('.babelrc')
       );
     },
 
-    projectfiles: function() {
+    projectfiles() {
       this.fs.copy(
         this.templatePath('editorconfig'),
         this.destinationPath('.editorconfig')
@@ -59,7 +111,7 @@ module.exports = yeoman.generators.Base.extend({
     },
   },
 
-  install: function() {
+  install() {
     this.installDependencies();
   },
 });

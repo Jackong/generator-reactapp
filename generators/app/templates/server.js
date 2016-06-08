@@ -24,7 +24,7 @@ config.module.loaders.unshift({
 });
 
 new WebpackDevServer(webpack(config), {
-  contentBase: 'public',
+  contentBase: 'src',
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,

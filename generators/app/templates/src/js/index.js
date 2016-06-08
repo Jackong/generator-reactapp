@@ -1,8 +1,12 @@
+<% if (useReact) { %>
 import React from 'react';
 import { render } from 'react-dom';
+<% } %>
 import debug from 'debug';
 
+<% if (useReact) { %>
 import Root from './containers/root';
+<% } %>
 
 const error = debug('app:error');
 
@@ -21,7 +25,11 @@ if (module.hot) {
 }
 
 try {
+  <% if (useReact) { %>
   render(<Root />, document.getElementById('root'));
+  <% } else { %>
+  document.getElementById('root').innerHTML = 'web app';
+  <% } %>
 } catch (e) {
   window.handleError(e);
 }
