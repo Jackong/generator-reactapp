@@ -8,10 +8,10 @@ export const changeTitle = createAction(types.CHANGE_TITLE, payload => {
   return payload;
 });
 
-export const getUsers = () => {
+export const getTitle = () => {
   return dispatch => api
-  .custom('users')
+  .custom('title')
   .get()
   .then(res => res.body().data())
-  .then(body => dispatch({ type: types.GET_USERS, payload: body.users }));
+  .then(body => dispatch(changeTitle(body.title)));
 };
