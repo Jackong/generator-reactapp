@@ -18,13 +18,13 @@ config.entry.app = config.entry.app.concat([
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 
 config.module.loaders.unshift({
-  test: /\.jsx?$/,
+  test: /\.js?$/,
   loader: 'react-hot',
   exclude: /(node_modules|bower_components)/,
 });
 
 new WebpackDevServer(webpack(config), {
-  contentBase: 'public',
+  contentBase: 'src',
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true,

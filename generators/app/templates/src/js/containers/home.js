@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Radium from 'radium';
-import { changeTitle } from '../actions';
+import { getTitle } from '../actions';
 
 const styles = {
   base: {
@@ -12,21 +12,24 @@ const styles = {
   },
 };
 
-@connect(null, {
-  changeTitle,
+@connect(state => ({
+  title: state.title,
+}), {
+  getTitle,
 })
 @Radium
 export class Home extends React.Component {
   static propTypes = {
-    changeTitle: PropTypes.func.isRequired,
+    getTitle: PropTypes.func.isRequired,
+    title: PropTypes.string,
   }
   componentWillMount() {
-    this.props.changeTitle('ReactApp');
+    this.props.getTitle();
   }
   render() {
     return (
       <div style={[styles.base, styles.larger]}>
-        Hello ReactApp
+        Hello {this.props.title}
       </div>
     );
   }
