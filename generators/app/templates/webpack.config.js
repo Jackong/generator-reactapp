@@ -10,16 +10,14 @@ const plugins = [
     inject: 'body',
     chunks: ['vendor', 'app'],
     filename: './index.html',
-    cdns: DEBUG ? [] : [
-      <% if (useReact) { %>
+    cdns: DEBUG ? [] : [<% if (useReact) { %>
       '//cdn.bootcss.com/react/0.14.7/react.min.js',
       '//cdn.bootcss.com/react/0.14.7/react-dom.min.js',
       '//cdn.bootcss.com/react-router/2.0.9-rc4/ReactRouter.min.js',
       '//cdn.bootcss.com/history/2.0.1/History.min.js',
       '//cdn.bootcss.com/redux/3.3.1/redux.min.js',
       '//cdn.bootcss.com/react-redux/4.4.0/react-redux.min.js',
-      '//cdn.bootcss.com/immutable/3.7.6/immutable.min.js',
-      <% } %>
+      '//cdn.bootcss.com/immutable/3.7.6/immutable.min.js',<% } %>
       '//cdn.bootcss.com/bluebird/3.3.3/bluebird.min.js',
       '//cdn.bootcss.com/fetch/0.11.0/fetch.min.js',
     ],
@@ -49,8 +47,7 @@ module.exports = {
     app: [
       './src/js/index.js',
     ],
-    libs: [
-      <% if (useReact) { %>
+    libs: [<% if (useReact) { %>
       'react',
       'react-dom',
       'react-redux',
@@ -61,8 +58,7 @@ module.exports = {
       'react-router-redux',
       'history',
       'radium',
-      'immutable',
-      <% } %>
+      'immutable',<% } %>
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
@@ -77,22 +73,37 @@ module.exports = {
   },
   plugins,
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      loader: 'babel',
-      exclude: /(node_modules|bower_components)/,
-    }],
-  },
-  externals: DEBUG ? {} : {
-    <% if (useReact) { %>
+    loaders: [
+      {
+        test: /\.js?$/,
+        loader: 'babel',
+        exclude: /(node_modules|bower_components)/,
+      },<% if (usePostCSS) { %>
+      {
+        test: /\.css?$/,
+        loaders: [
+          'style',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'postcss',
+        ],
+      },<% } %>
+    ],
+  },<% if (usePostCSS) { %>
+  postcss() {
+    return [
+      require('autoprefixer'),
+      require('precss'),
+      require('lost'),
+    ];
+  },<% } %>
+  externals: DEBUG ? {} : {<% if (useReact) { %>
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-router': 'ReactRouter',
     redux: 'Redux',
     'react-redux': 'ReactRedux',
     history: 'History',
-    immutable: 'Immutable',
-    <% } %>
+    immutable: 'Immutable',<% } %>
     bluebird: 'Promise',
     'whatwg-fetch': 'fetch',
   },

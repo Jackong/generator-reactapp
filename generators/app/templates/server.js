@@ -16,13 +16,13 @@ config.entry.app = config.entry.app.concat([
 ]);
 
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
-
+<% if (useReact) { %>
 config.module.loaders.unshift({
   test: /\.js?$/,
   loader: 'react-hot',
   exclude: /(node_modules|bower_components)/,
 });
-
+<% } %>
 new WebpackDevServer(webpack(config), {
   contentBase: 'src',
   publicPath: config.output.publicPath,

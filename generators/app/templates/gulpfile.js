@@ -11,7 +11,18 @@ const buildDir = './dist';
 gulp.task('clean', () => del([
   `${buildDir}/**/*`,
 ]));
-
+<% if (usePostCSS) { %>
+gulp.task('postcss', () => {
+  return gulp.src('src/**/*.css')
+    .pipe(postcss([
+      require('autoprefixer'),
+      require('precss'),
+      require('lost'),
+      require('cssnano'),
+    ]))
+    .pipe(gulp.dest(buildDir));
+});
+<% } %>
 gulp.task('webpack', ['clean'], () => {
   return gulp.src('./src/js/index.js')
   .pipe(webpack(config))
