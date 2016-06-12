@@ -16,11 +16,18 @@ module.exports = yeoman.Base.extend({
       type: 'checkbox',
       name: 'features',
       message: 'What more would you like?',
-      choices: [{
-        name: 'React',
-        value: 'useReact',
-        checked: true,
-      }],
+      choices: [
+        {
+          name: 'React',
+          value: 'useReact',
+          checked: true,
+        },
+        {
+          name: 'PostCSS',
+          value: 'usePostCSS',
+          checked: true,
+        },
+      ],
     }];
 
     this.prompt(prompts, function (answers) {
@@ -31,6 +38,7 @@ module.exports = yeoman.Base.extend({
       }
 
       this.useReact = hasFeature('useReact');
+      this.usePostCSS = hasFeature('usePostCSS');
 
       done();
     }.bind(this));
@@ -42,6 +50,7 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('package.json'), {
           appname: this.appname,
           useReact: this.useReact,
+          usePostCSS: this.usePostCSS,
         }
       );
       this.fs.copyTpl(
@@ -49,15 +58,22 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('webpack.config.js'), {
           appname: this.appname,
           useReact: this.useReact,
+          usePostCSS: this.usePostCSS,
         }
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('server.js'),
-        this.destinationPath('server.js')
+        this.destinationPath('server.js'),
+        {
+          useReact: this.useReact,
+        }
       );
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('gulpfile.js'),
-        this.destinationPath('gulpfile.js')
+        this.destinationPath('gulpfile.js'),
+        {
+          usePostCSS: this.usePostCSS,
+        }
       );
       this.fs.copy(
         this.templatePath('src/api'),
