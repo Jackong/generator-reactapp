@@ -1,5 +1,8 @@
 const webpack = require('webpack');
-const path = require('path');
+const path = require('path');<% if (usePostCSS) { %>
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const lost = require('lost');<% } %>
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DEBUG = (process.env.NODE_ENV !== 'production');
 
@@ -82,8 +85,9 @@ module.exports = {
       {
         test: /\.css?$/,
         loaders: [
-          'style',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'style',<% if (useReact) { %>
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',<% } else { %>
+          'css',<% } %>
           'postcss',
         ],
       },<% } %>
@@ -91,9 +95,9 @@ module.exports = {
   },<% if (usePostCSS) { %>
   postcss() {
     return [
-      require('autoprefixer'),
-      require('precss'),
-      require('lost'),
+      autoprefixer,
+      precss,
+      lost,
     ];
   },<% } %>
   externals: DEBUG ? {} : {<% if (useReact) { %>

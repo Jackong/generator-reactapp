@@ -54,13 +54,19 @@ Dependencies:
 * [eslint](http://eslint.org/)
   * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 * [editorconfig](http://editorconfig.org/)
+* [cross-env](https://github.com/kentcdodds/cross-env) (Sets an environment using unix style and have it work on windows too)
+* [postcss](https://github.com/postcss/postcss)
+  * [autoprefixer](https://github.com/postcss/autoprefixer) (Add vendor prefixes to CSS rules)
+  * [precss](https://github.com/jonathantneal/precss) (Use Sass-like markup in your CSS files)
+  * [cssnano](http://cssnano.co/) (Compresses your css)
+  * [lost](https://github.com/peterramsing/lost) (A powerful grid system)
+  * [react-css-modules](https://github.com/gajus/react-css-modules) (Namespace for css)
 
 ---
 
 ## Why
 
-* Quickly setup one project.
-* All here.
+> Quickly start a project.
 
 ---
 
@@ -125,6 +131,7 @@ npm run prod
   * actions/ `redux actions`
   * api/ `RESTful API`
   * components/ `react components(reusability)`
+  * constants/  `common constants`
   * containers/ `react containers(route)`
   * reducers/ `redux reducers`
   * store/ `redux store`

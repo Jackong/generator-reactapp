@@ -6,45 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
   <% for (var i=0; i< htmlWebpackPlugin.options.cdns.length; i++) { %>
     <script src="<%= htmlWebpackPlugin.options.cdns[i] %>"></script>
   <% } %>
-    <style>
-      html {
-        font-size: 17px;
-
-        -webki-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      @media only screen and (min-width : 375px) {
-        html {
-          font-size: 20px;
-        }
-      }
-      @media only screen and (min-width : 414px) {
-        html {
-          font-size: 22px;
-        }
-      }
-      @media only screen and (min-width : 600px) {
-        html {
-          font-size: 32px;
-        }
-      }
-      @media only screen and (min-width : 768px) {
-        html {
-          font-size: 41px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-      <div id="root"></div>
   </body>
 </html>

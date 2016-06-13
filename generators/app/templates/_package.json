@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "author": "jackong",
   "scripts": {
-    "start": "MOCK_API=/api* NODE_ENV=development DEBUG=server:* PORT=3000 node server.js",<% if (useReact) { %>
-    "test": "NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/js/test/setup.js --recursive src/js/test/",
-    "testing": "npm test -- --watch",<% } %>
-    "dev": "NODE_ENV=development gulp build",
-    "prod": "NODE_ENV=production gulp build"
+    "start": "cross-env MOCK_API=/api* NODE_ENV=development DEBUG=server:* PORT=3000 node server.js",<% if (useReact) { %>
+    "test": "cross-env NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/js/test/setup.js --recursive src/js/test/",
+    "testing": "cross-env npm test -- --watch",<% } %>
+    "dev": "cross-env NODE_ENV=development gulp build",
+    "prod": "cross-env NODE_ENV=production gulp build"
   },
   "dependencies": {<% if (useReact) { %>
     "react": "^15.0.1",
@@ -68,6 +68,7 @@
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",<% } if (usePostCSS && useReact) { %>
     "react-css-modules": "^3.7.6",<% } %>
+    "cross-env": "^1.0.8",
     "request": "^2.71.0",
     "sinon": "^1.17.3",
     "webpack": "^1.12.14",

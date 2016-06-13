@@ -3,7 +3,13 @@ const webpack = require('webpack-stream');
 const del = require('del');
 const RevAll = require('gulp-rev-all');
 const revReplace = require('gulp-rev-replace');
-
+<% if (usePostCSS) { %>
+const postcss = require('gulp-postcss');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const lost = require('lost');
+const cssnano = require('cssnano');
+<% } %>
 const config = require('./webpack.config');
 
 const buildDir = './dist';
@@ -12,13 +18,13 @@ gulp.task('clean', () => del([
   `${buildDir}/**/*`,
 ]));
 <% if (usePostCSS) { %>
-gulp.task('postcss', () => {
+gulp.task('postcss', ['clean'], () => {
   return gulp.src('src/**/*.css')
     .pipe(postcss([
-      require('autoprefixer'),
-      require('precss'),
-      require('lost'),
-      require('cssnano'),
+      autoprefixer,
+      precss,
+      lost,
+      cssnano,
     ]))
     .pipe(gulp.dest(buildDir));
 });
@@ -30,11 +36,11 @@ gulp.task('webpack', ['clean'], () => {
 });
 
 gulp.task('asset', ['clean'], () => {
-  return gulp.src(['./public/images/**/*'], { base: 'public' })
+  return gulp.src(['./public/images/**/*', './public/css/**/*'], { base: 'public' })
   .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('rev', ['asset', 'webpack'], () => {
+gulp.task('rev', [<% if (usePostCSS) {%>'postcss', <%}%>'asset', 'webpack'], () => {
   const revAll = new RevAll({
     dontRenameFile: ['index.html'],
     dontSearchFile: [/vendor\.js/],
