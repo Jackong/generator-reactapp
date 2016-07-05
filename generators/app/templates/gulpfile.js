@@ -36,7 +36,7 @@ gulp.task('webpack', ['clean'], () => {
 });
 
 gulp.task('asset', ['clean'], () => {
-  return gulp.src(['./public/images/**/*', './public/css/**/*'], { base: 'public' })
+  return gulp.src(['./src/images/**/*', './src/css/**/*'], { base: 'src' })
   .pipe(gulp.dest(buildDir));
 });
 
