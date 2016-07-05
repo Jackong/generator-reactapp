@@ -1,10 +1,13 @@
-<% if (useReact) { %>
 import React from 'react';
-import { render } from 'react-dom';<% } %>
+import { render } from 'react-dom';
 import debug from 'debug';
-<% if (useReact) { %>
+import Bluebird from 'bluebird';
+
+window.Promise = Bluebird;
+
+import '../css/index.css';
 import Root from './containers/root';
-<% } %>
+
 const error = debug('app:error');
 
 window.handleError = e => {
@@ -21,9 +24,10 @@ if (module.hot) {
   module.hot.accept();
 }
 
-try {<% if (useReact) { %>
-  render(<Root />, document.getElementById('root'));<% } else { %>
-  document.getElementById('root').innerHTML = 'web app';<% } %>
-} catch (e) {
-  window.handleError(e);
-}
+window.onload = () => {
+  try {
+    render(<Root />, document.getElementById('root'));
+  } catch (e) {
+    window.handleError(e);
+  }
+};

@@ -1,23 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import Radium from 'radium';
+import cx from 'classnames';
 import { getTitle } from '../actions';
-
-const styles = {
-  base: {
-    color: 'red',
-  },
-  larger: {
-    fontSize: 20,
-  },
-};
 
 @connect(state => ({
   title: state.title,
 }), {
   getTitle,
 })
-@Radium
 export class Home extends React.Component {
   static propTypes = {
     getTitle: PropTypes.func.isRequired,
@@ -28,7 +18,7 @@ export class Home extends React.Component {
   }
   render() {
     return (
-      <div style={[styles.base, styles.larger]}>
+      <div className={cx('home')}>
         Hello {this.props.title}
       </div>
     );

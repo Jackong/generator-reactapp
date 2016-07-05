@@ -10,70 +10,27 @@ module.exports = yeoman.Base.extend({
     ));
     this.appname = this.appname.replace(/\s/g, '-');
   },
-  prompting() {
-    const done = this.async();
-    const prompts = [{
-      type: 'checkbox',
-      name: 'features',
-      message: 'What more would you like?',
-      choices: [
-        {
-          name: 'React',
-          value: 'useReact',
-          checked: true,
-        },
-        {
-          name: 'PostCSS',
-          value: 'usePostCSS',
-          checked: true,
-        },
-      ],
-    }];
-
-    this.prompt(prompts, function (answers) {
-      const features = answers.features;
-
-      function hasFeature(feat) {
-        return features && features.indexOf(feat) !== -1;
-      }
-
-      this.useReact = hasFeature('useReact');
-      this.usePostCSS = hasFeature('usePostCSS');
-
-      done();
-    }.bind(this));
-  },
   writing: {
     app() {
       this.fs.copyTpl(
         this.templatePath('_package.json'),
         this.destinationPath('package.json'), {
           appname: this.appname,
-          useReact: this.useReact,
-          usePostCSS: this.usePostCSS,
         }
       );
       this.fs.copyTpl(
         this.templatePath('webpack.config.js'),
         this.destinationPath('webpack.config.js'), {
           appname: this.appname,
-          useReact: this.useReact,
-          usePostCSS: this.usePostCSS,
         }
       );
-      this.fs.copyTpl(
+      this.fs.copy(
         this.templatePath('server.js'),
-        this.destinationPath('server.js'),
-        {
-          useReact: this.useReact,
-        }
+        this.destinationPath('server.js')
       );
-      this.fs.copyTpl(
+      this.fs.copy(
         this.templatePath('gulpfile.js'),
-        this.destinationPath('gulpfile.js'),
-        {
-          usePostCSS: this.usePostCSS,
-        }
+        this.destinationPath('gulpfile.js')
       );
       this.fs.copy(
         this.templatePath('src/api'),
@@ -91,19 +48,14 @@ module.exports = yeoman.Base.extend({
         this.templatePath('src/templates'),
         this.destinationPath('src/templates')
       );
-      if (this.useReact) {
-        this.fs.copy(
-          this.templatePath('src'),
-          this.destinationPath('src')
-        );
-        mkdirp.sync(this.destinationPath('src/js/components'));
-      }
-      this.fs.copyTpl(
+      this.fs.copy(
+        this.templatePath('src'),
+        this.destinationPath('src')
+      );
+      mkdirp.sync(this.destinationPath('src/js/components'));
+      this.fs.copy(
         this.templatePath('src/js/index.js'),
-        this.destinationPath('src/js/index.js'),
-        {
-          useReact: this.useReact,
-        }
+        this.destinationPath('src/js/index.js')
       );
       this.fs.copy(
         this.templatePath('babelrc'),
