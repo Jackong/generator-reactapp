@@ -1,9 +1,13 @@
 const webpack = require('webpack');
-const path = require('path');<% if (usePostCSS) { %>
+const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const lost = require('lost');<% } %>
+const lost = require('lost');
+const asImport = require('postcss-import');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 const DEBUG = (process.env.NODE_ENV !== 'production');
 
 const plugins = [
@@ -13,16 +17,19 @@ const plugins = [
     inject: 'body',
     chunks: ['vendor', 'app'],
     filename: './index.html',
-    cdns: DEBUG ? [] : [<% if (useReact) { %>
-      '//cdn.bootcss.com/react/0.14.7/react.min.js',
-      '//cdn.bootcss.com/react/0.14.7/react-dom.min.js',
-      '//cdn.bootcss.com/react-router/2.0.9-rc4/ReactRouter.min.js',
-      '//cdn.bootcss.com/history/2.0.1/History.min.js',
-      '//cdn.bootcss.com/redux/3.3.1/redux.min.js',
-      '//cdn.bootcss.com/react-redux/4.4.0/react-redux.min.js',
-      '//cdn.bootcss.com/immutable/3.7.6/immutable.min.js',<% } %>
-      '//cdn.bootcss.com/bluebird/3.3.3/bluebird.min.js',
-      '//cdn.bootcss.com/fetch/0.11.0/fetch.min.js',
+    cdns: DEBUG ? [] : [
+      '//cdn.bootcss.com/react/15.2.0/react.min.js',
+      '//cdn.bootcss.com/react/15.2.0/react-dom.min.js',
+      '//cdn.bootcss.com/react-router/2.5.2/ReactRouter.min.js',
+      '//cdn.bootcss.com/history/3.0.0/History.min.js',
+      '//cdn.bootcss.com/redux/3.5.2/redux.min.js',
+      '//cdn.bootcss.com/react-redux/4.4.5/react-redux.min.js',
+      '//cdn.bootcss.com/react-router-redux/4.0.5/ReactRouterRedux.min.js',
+      '//cdn.bootcss.com/redux-thunk/2.1.0/redux-thunk.min.js',
+      '//cdn.bootcss.com/immutable/3.8.1/immutable.min.js',
+      '//cdn.bootcss.com/bluebird/3.4.1/bluebird.min.js',
+      '//cdn.bootcss.com/fetch/1.0.0/fetch.min.js',
+      '//cdn.bootcss.com/classnames/2.2.5/index.min.js',
     ],
   }),
   new webpack.ProvidePlugin({
@@ -33,6 +40,7 @@ const plugins = [
     'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     DEBUG,
   }),
+  new ExtractTextPlugin('./css/app.css'),
 ];
 
 if (!DEBUG) {
@@ -50,7 +58,7 @@ module.exports = {
     app: [
       './src/js/index.js',
     ],
-    libs: [<% if (useReact) { %>
+    libs: [
       'react',
       'react-dom',
       'react-redux',
@@ -60,13 +68,13 @@ module.exports = {
       'redux-actions',
       'react-router-redux',
       'history',
-      'radium',
-      'immutable',<% } %>
+      'immutable',
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
       'bluebird',
       'debug',
+      'classnames',
     ],
   },
   output: {
@@ -81,35 +89,40 @@ module.exports = {
         test: /\.js?$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
-      },<% if (usePostCSS) { %>
+      },
       {
         test: /\.css?$/,
-        loaders: [
-          'style',<% if (useReact) { %>
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',<% } else { %>
-          'css',<% } %>
-          'postcss',
-        ],
-      },<% } %>
+        loader: ExtractTextPlugin.extract(
+          'style',
+          'css',
+          'postcss'
+        ),
+      },
     ],
-  },<% if (usePostCSS) { %>
-  postcss() {
+  },
+  postcss(wp) {
     return [
+      asImport({
+        addDependencyTo: wp,
+      }),
       autoprefixer,
       precss,
       lost,
     ];
-  },<% } %>
-  externals: DEBUG ? {} : {<% if (useReact) { %>
+  },
+  externals: DEBUG ? {} : {
     react: 'React',
     'react-dom': 'ReactDOM',
     'react-router': 'ReactRouter',
     redux: 'Redux',
     'react-redux': 'ReactRedux',
+    'react-router-redux': 'ReactRouterRedux',
+    'redux-thunk': 'ReduxThunk',
     history: 'History',
-    immutable: 'Immutable',<% } %>
+    immutable: 'Immutable',
     bluebird: 'Promise',
     'whatwg-fetch': 'fetch',
+    classnames: 'classNames',
   },
   devtool: DEBUG && '#source-map',
   debug: DEBUG,
