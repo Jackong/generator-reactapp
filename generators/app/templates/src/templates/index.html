@@ -8,7 +8,9 @@
     <link href="//cdn.bootcss.com/normalize/4.1.1/normalize.min.css" rel="stylesheet">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      loading...
+    </div>
   <% for (var i=0; i< htmlWebpackPlugin.options.cdns.length; i++) { %>
     <script src="<%= htmlWebpackPlugin.options.cdns[i] %>"></script>
   <% } %>
