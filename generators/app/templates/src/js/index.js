@@ -17,17 +17,15 @@ window.handleError = e => {
 Promise.onPossiblyUnhandledRejection(window.handleError);
 
 window.onerror = (msg, url, line, column, e) => {
-  window.handleError(e || new Error(`${msg}(${url}):${line}-${column}`));
+  window.handleError(e || new Error(msg, url, line));
 };
 
 if (module.hot) {
   module.hot.accept();
 }
 
-window.onload = () => {
-  try {
-    render(<Root />, document.getElementById('root'));
-  } catch (e) {
-    window.handleError(e);
-  }
-};
+try {
+  render(<Root />, document.getElementById('root'));
+} catch (e) {
+  window.handleError(e);
+}

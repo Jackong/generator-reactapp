@@ -1,74 +1,78 @@
 # generator-reactapp
 
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![David deps][david-image]][david-url]
-[![node version][node-image]][node-url]
-[![Gittip][gittip-image]][gittip-url]
-
-[npm-image]: https://img.shields.io/npm/v/generator-reactapp.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/generator-reactapp
-[travis-image]: https://travis-ci.org/Jackong/generator-reactapp.svg?branch=master
-[travis-url]: https://travis-ci.org/Jackong/generator-reactapp
-[david-image]: https://img.shields.io/david/Jackong/generator-reactapp.svg?style=flat-square
-[david-url]: https://david-dm.org/Jackong/generator-reactapp
-[node-image]: https://img.shields.io/badge/node.js-%3E=_0.11-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
-[gittip-image]: https://img.shields.io/gratipay/Jackong.svg
-[gittip-url]: https://gratipay.com/~Jackong
+[![NPM version][npm-image]][npm-url] [![build status][travis-image]][travis-url] [![David deps][david-image]][david-url] [![node version][node-image]][node-url] [![Gittip][gittip-image]][gittip-url]
 
 [![NPM](https://nodei.co/npm/generator-reactapp.png?downloads=true)](https://nodei.co/npm/generator-reactapp/)
 
----
+--------------------------------------------------------------------------------
 
 ## What
+
 `generator-reactapp` is a yeoman generator for react app.
 
 Dependencies:
-* [react](https://facebook.github.io/react/)
-  * [react-router](https://github.com/reactjs/react-router)
-  * [babel](http://babeljs.io/)
-* [webpack](http://webpack.github.io/)
-  * [webpack-dev-server](https://webpack.github.io/docs/webpack-dev-server.html)(Hot-reload & Mock-API)
-* [gulp](http://gulpjs.com/)
-  * [gulp-rev-all](https://github.com/smysnk/gulp-rev-all)
-  * [gulp-rev-replace](https://github.com/jamesknelson/gulp-rev-replace)
-* [redux](http://redux.js.org/)
-  * [redux-devtools](https://github.com/gaearon/redux-devtools)
-  * [redux-logger](https://github.com/theaqua/redux-logger)
-  * [redux-thunk](https://github.com/gaearon/redux-thunk)
-  * [redux-actions](https://github.com/acdlite/redux-actions)
-  * [react-router-redux](https://github.com/reactjs/react-router-redux)
-* [radium](http://stack.formidable.com/radium/) ([CSS in JS](https://speakerdeck.com/vjeux/react-css-in-js))
-* [bluebird](http://bluebirdjs.com/docs/getting-started.html) (Promise)
-* [restful.js](https://github.com/marmelab/restful.js) (RESTful)
-  * [fetch](https://github.com/github/fetch)
-  * [request](https://github.com/request/request)
-* test
-  * [mocha](https://mochajs.org/) (BDD)
-  * [chai](http://chaijs.com/) (Assertion)
-  * [sinon](sinonjs.org) (Mock)
-  * [nock](https://github.com/node-nock/nock) (HTTP Mocking and Expectations)
-  * [jsdom](https://github.com/tmpvar/jsdom) (A JavaScript implementation of the WHATWG DOM and HTML standards)
-  * [enzyme](https://github.com/airbnb/enzyme)
-* [eslint](http://eslint.org/)
-  * [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-* [editorconfig](http://editorconfig.org/)
-* [cross-env](https://github.com/kentcdodds/cross-env) (Sets an environment using unix style and have it work on windows too)
-* [postcss](https://github.com/postcss/postcss)
-  * [autoprefixer](https://github.com/postcss/autoprefixer) (Add vendor prefixes to CSS rules)
-  * [precss](https://github.com/jonathantneal/precss) (Use Sass-like markup in your CSS files)
-  * [cssnano](http://cssnano.co/) (Compresses your css)
-  * [lost](https://github.com/peterramsing/lost) (A powerful grid system)
-  * [react-css-modules](https://github.com/gajus/react-css-modules) (Namespace for css)
 
----
+- [react](https://facebook.github.io/react/)
+
+  - [react-router](https://github.com/reactjs/react-router)
+  - [babel](http://babeljs.io/)
+
+- [webpack](http://webpack.github.io/)
+
+  - [webpack-dev-server](https://webpack.github.io/docs/webpack-dev-server.html)(Hot-reload & Mock-API)
+
+- [gulp](http://gulpjs.com/)
+
+  - [gulp-rev-all](https://github.com/smysnk/gulp-rev-all)
+  - [gulp-rev-replace](https://github.com/jamesknelson/gulp-rev-replace)
+
+- [redux](http://redux.js.org/)
+
+  - [redux-devtools](https://github.com/gaearon/redux-devtools)
+  - [redux-logger](https://github.com/theaqua/redux-logger)
+  - [redux-thunk](https://github.com/gaearon/redux-thunk)
+  - [redux-actions](https://github.com/acdlite/redux-actions)
+  - [react-router-redux](https://github.com/reactjs/react-router-redux)
+
+- [radium](http://stack.formidable.com/radium/) ([CSS in JS](https://speakerdeck.com/vjeux/react-css-in-js))
+
+- [bluebird](http://bluebirdjs.com/docs/getting-started.html) (Promise)
+
+- [restful.js](https://github.com/marmelab/restful.js) (RESTful)
+
+  - [fetch](https://github.com/github/fetch)
+  - [request](https://github.com/request/request)
+
+- test
+
+  - [mocha](https://mochajs.org/) (BDD)
+  - [chai](http://chaijs.com/) (Assertion)
+  - [sinon](sinonjs.org) (Mock)
+  - [nock](https://github.com/node-nock/nock) (HTTP Mocking and Expectations)
+  - [jsdom](https://github.com/tmpvar/jsdom) (A JavaScript implementation of the WHATWG DOM and HTML standards)
+  - [enzyme](https://github.com/airbnb/enzyme)
+
+- [eslint](http://eslint.org/)
+
+  - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
+- [editorconfig](http://editorconfig.org/)
+
+- [cross-env](https://github.com/kentcdodds/cross-env) (Sets an environment using unix style and have it work on windows too)
+
+- [postcss](https://github.com/postcss/postcss)
+
+  - [autoprefixer](https://github.com/postcss/autoprefixer) (Add vendor prefixes to CSS rules)
+  - [precss](https://github.com/jonathantneal/precss) (Use Sass-like markup in your CSS files)
+  - [lost](https://github.com/peterramsing/lost) (A powerful grid system)
+
+--------------------------------------------------------------------------------
 
 ## Why
 
 > Quickly start a project.
 
----
+--------------------------------------------------------------------------------
 
 ## How
 
@@ -93,6 +97,7 @@ yo reactapp
 ```
 
 ### Starting the dev-server
+
 ```bash
 npm start
 ```
@@ -102,7 +107,9 @@ npm start
 ```bash
 npm test
 ```
+
 OR
+
 ```bash
 npm run testing
 ```
@@ -110,36 +117,54 @@ npm run testing
 ### Building Project
 
 Building for development
+
 ```bash
 npm run dev
 ```
 
 Building for production
+
 ```bash
 npm run prod
 ```
 
 ### Project Structure
 
-* .babelrc `babel config`
-* .editorconfig `editor config`
-* .eslintrc `eslint config`
-* gulpfile.js `gulp tasks`
-* server.js `dev-server`
-* webpack.config.js `webpack config`
-* src/
-  * actions/ `redux actions`
-  * api/ `RESTful API`
-  * components/ `react components(reusability)`
-  * constants/  `common constants`
-  * containers/ `react containers(route)`
-  * reducers/ `redux reducers`
-  * store/ `redux store`
-  * test/ `test scripts`
-  * index.jsx `js entry`
-  * templates/index.html `html entry template`
-* dist/ `generated by building`
+- .babelrc `babel config`
+- .editorconfig `editor config`
+- .eslintrc `eslint config`
+- gulpfile.js `gulp tasks`
+- server.js `dev-server`
+- webpack.config.js `webpack config`
+- src/
+
+  - templates/index.html `html entry template`
+  - api/ `RESTful API`
+  - css/ `postcss files`
+  - js/
+
+    - actions/ `redux actions`
+    - components/ `react components(reusability)`
+    - constants/ `common constants`
+    - containers/ `react containers(route)`
+    - reducers/ `redux reducers`
+    - store/ `redux store`
+    - test/ `test scripts`
+    - index.jsx `js entry`
+
+- dist/ `generated by building`
 
 ## License
 
 MIT
+
+[david-image]: https://img.shields.io/david/Jackong/generator-reactapp.svg?style=flat-square
+[david-url]: https://david-dm.org/Jackong/generator-reactapp
+[gittip-image]: https://img.shields.io/gratipay/Jackong.svg
+[gittip-url]: https://gratipay.com/~Jackong
+[node-image]: https://img.shields.io/badge/node.js-%3E=_0.11-green.svg?style=flat-square
+[node-url]: http://nodejs.org/download/
+[npm-image]: https://img.shields.io/npm/v/generator-reactapp.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/generator-reactapp
+[travis-image]: https://travis-ci.org/Jackong/generator-reactapp.svg?branch=master
+[travis-url]: https://travis-ci.org/Jackong/generator-reactapp
