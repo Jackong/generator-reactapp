@@ -4,6 +4,7 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const lost = require('lost');
 const asImport = require('postcss-import');
+const calc = require('postcss-calc');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -105,9 +106,10 @@ module.exports = {
       asImport({
         addDependencyTo: wp,
       }),
-      autoprefixer,
       precss,
       lost,
+      calc,
+      autoprefixer,
     ];
   },
   externals: DEBUG ? {} : {

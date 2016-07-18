@@ -66,6 +66,7 @@
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
+    "postcss-calc": "^5.2.1",
     "cross-env": "^1.0.8",
     "request": "^2.71.0",
     "sinon": "^1.17.3",
