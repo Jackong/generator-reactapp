@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import { initState, title } from '../../reducers';
-import types from '../../actions/types';
+import { CHANGE_TITLE } from '../../actions';
 
 const { describe, it } = global;
 
@@ -10,7 +10,7 @@ describe('reducers', () => {
     it('should change the title', () => {
       const expected = 'Hello World';
       expect(title(initState.get('title'), {
-        type: types.CHANGE_TITLE,
+        type: CHANGE_TITLE,
         payload: expected,
       })).to.be.eql(expected);
     });
