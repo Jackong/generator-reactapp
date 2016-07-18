@@ -1,20 +1,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
+
 import { getTitle } from '../actions';
 
 @connect(state => ({
   title: state.title,
-}), {
-  getTitle,
-})
+}))
 export class Home extends React.Component {
   static propTypes = {
-    getTitle: PropTypes.func.isRequired,
+    dispatch: PropTypes.func.isRequired,
     title: PropTypes.string,
   }
   componentWillMount() {
-    this.props.getTitle();
+    this.props.dispatch(getTitle());
   }
   render() {
     return (

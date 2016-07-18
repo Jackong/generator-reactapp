@@ -1,11 +1,14 @@
 import { compose, createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
+import createSagaMiddleware from 'redux-saga';
 
 import reducers from '../reducers';
+import sagas from '../sagas';
 
-let middlewares = [thunk, routerMiddleware(hashHistory)];
+const sagaMiddleware = createSagaMiddleware();
+
+let middlewares = [sagaMiddleware, routerMiddleware(hashHistory)];
 
 /*  global  DEBUG*/
 const tools = DEBUG ? require('./tools.dev').default : [];
@@ -18,3 +21,5 @@ export default createStore(
     ...tools
   ),
 );
+
+sagaMiddleware.run(sagas);

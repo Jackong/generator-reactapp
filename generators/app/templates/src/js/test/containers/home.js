@@ -9,9 +9,9 @@ const { describe, it } = global;
 describe('containers', () => {
   describe('Home', () => {
     it('should render correctly', () => {
-      const getTitle = sinon.spy();
-      mount(<Home.WrappedComponent getTitle={getTitle} />);
-      expect(getTitle.calledOnce).to.be.eql(true);
+      const dispatch = sinon.spy();
+      mount(<Home.WrappedComponent dispatch={dispatch} />);
+      expect(dispatch.calledOnce).to.be.eql(true);
     });
   });
 });
