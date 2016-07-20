@@ -36,11 +36,24 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     DEBUG,
-  }),
-  new ExtractTextPlugin('./css/app.css'),
+  })
 ];
 
-if (!DEBUG) {
+const loaders = [
+  {
+    test: /\.js?$/,
+    loader: 'babel',
+    exclude: /(node_modules|bower_components)/,
+  },
+];
+
+if (DEBUG) {
+  loaders.push({
+    test: /\.css?$/,
+    loaders: ['style', 'css', 'postcss'],
+  });
+} else {
+  plugins.push(new ExtractTextPlugin('./css/app.css'));
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -48,6 +61,11 @@ if (!DEBUG) {
       },
     })
   );
+
+  loaders.push({
+    test: /\.css?$/,
+    loader: ExtractTextPlugin.extract('style', ['css', 'postcss']),
+  });
 }
 
 module.exports = {
@@ -81,17 +99,7 @@ module.exports = {
   },
   plugins,
   module: {
-    loaders: [
-      {
-        test: /\.js?$/,
-        loader: 'babel',
-        exclude: /(node_modules|bower_components)/,
-      },
-      {
-        test: /\.css?$/,
-        loader: ExtractTextPlugin.extract('style', ['css', 'postcss']),
-      },
-    ],
+    loaders,
   },
   postcss(wp) {
     return [
