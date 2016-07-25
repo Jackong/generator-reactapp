@@ -28,6 +28,7 @@ const plugins = [
       '//cdn.bootcss.com/react-redux/4.4.5/react-redux.min.js',
       '//cdn.bootcss.com/react-router-redux/4.0.5/ReactRouterRedux.min.js',
       '//cdn.bootcss.com/fetch/1.0.0/fetch.min.js',
+      '//cdn.bootcss.com/store.js/1.3.20/store.min.js',
       '//cdn.bootcss.com/classnames/2.2.5/index.min.js',
     ],
   }),
@@ -88,6 +89,7 @@ module.exports = {
       'whatwg-fetch',
       'debug',
       'classnames',
+      'store',
     ],
   },
   output: {
@@ -121,6 +123,7 @@ module.exports = {
     history: 'History',
     'whatwg-fetch': 'fetch',
     classnames: 'classNames',
+    store: 'store',
   },
   devtool: DEBUG && '#source-map',
   debug: DEBUG,
