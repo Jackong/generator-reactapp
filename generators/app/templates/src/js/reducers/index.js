@@ -1,17 +1,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { handleActions } from 'redux-actions';
-import { fromJS } from 'immutable';
 
 import { types } from '../actions';
 
-export const initState = fromJS({
+export const initState = {
   user: {},
-});
+};
 
 export const user = handleActions({
-  [types.SIGN_IN]: (state, action) => state.merge(action.payload),
-}, initState.get('user'));
+  [types.SIGN_IN]: (state, { payload }) => ({ ...state, ...payload }),
+}, initState.user);
 
 export default combineReducers({
   routing: routerReducer,

@@ -27,7 +27,6 @@ const plugins = [
       '//cdn.bootcss.com/redux/3.5.2/redux.min.js',
       '//cdn.bootcss.com/react-redux/4.4.5/react-redux.min.js',
       '//cdn.bootcss.com/react-router-redux/4.0.5/ReactRouterRedux.min.js',
-      '//cdn.bootcss.com/immutable/3.8.1/immutable.min.js',
       '//cdn.bootcss.com/fetch/1.0.0/fetch.min.js',
       '//cdn.bootcss.com/classnames/2.2.5/index.min.js',
     ],
@@ -36,7 +35,7 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     DEBUG,
-  })
+  }),
 ];
 
 const loaders = [
@@ -84,7 +83,6 @@ module.exports = {
       'redux-saga',
       'react-router-redux',
       'history',
-      'immutable',
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
@@ -121,7 +119,6 @@ module.exports = {
     'react-redux': 'ReactRedux',
     'react-router-redux': 'ReactRouterRedux',
     history: 'History',
-    immutable: 'Immutable',
     'whatwg-fetch': 'fetch',
     classnames: 'classNames',
   },

@@ -19,7 +19,6 @@
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.5",
     "redux-saga": "^0.11.0",
-    "immutable": "^3.8.1",
     "history": "^2.0.1",
     "classnames": "^2.2.5",
     "query-string": "^4.2.1",

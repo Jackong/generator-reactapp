@@ -1,5 +1,4 @@
 import { expect } from 'chai';
-import { Map } from 'immutable';
 
 import { initState, user } from '../../reducers';
 import { types } from '../../actions';
@@ -10,10 +9,10 @@ describe('reducers', () => {
   describe('user', () => {
     it('should merge the user', () => {
       const expected = { token: 'abc' };
-      expect(user(initState.get('user'), {
+      expect(user(initState.user, {
         type: types.SIGN_IN,
         payload: expected,
-      })).to.be.eql(new Map(expected));
+      })).to.be.eql(expected);
     });
   });
 });
