@@ -1,6 +1,18 @@
 import { createAction } from 'redux-actions';
 
-export const GET_TITLE = 'GET_TITLE';
-export const CHANGE_TITLE = 'CHANGE_TITLE';
+export const types = {};
 
-export const getTitle = createAction(GET_TITLE);
+const type = tp => {
+  types[tp] = tp;
+};
+
+type('CHANGE_TITLE');
+type('SIGN_IN_REQUEST');
+type('SIGN_IN');
+
+export const changeTitle = createAction(types.CHANGE_TITLE, payload => {
+  document.title = payload;
+  return payload;
+});
+
+export const signIn = createAction(types.SIGN_IN_REQUEST);

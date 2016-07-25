@@ -1,4 +1,4 @@
-import env from '../constants/env';
+import env from './env';
 
 export default {
   [env.DEV]: '/api',

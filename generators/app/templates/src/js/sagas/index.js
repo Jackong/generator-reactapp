@@ -1,23 +1,20 @@
 import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
-import { GET_TITLE, CHANGE_TITLE } from '../actions';
-import api from '../api';
+import { types } from '../actions';
+import { signIn } from '../api';
 
-
-function *fetchTitle() {
-  const res = yield call(api.custom('title').get);
-  const body = res.body().data();
-  document.title = body.title;
-  yield put({ type: CHANGE_TITLE, payload: body.title });
+export function* autheticate({ payload }) {
+  const user = yield call(signIn, payload);
+  yield put({ type: types.SIGN_IN, payload: user });
 }
 
-function *watchTitle() {
-  yield* takeEvery(GET_TITLE, fetchTitle);
+function* signInFlow() {
+  yield* takeEvery(types.SIGN_IN_REQUEST, autheticate);
 }
 
 export default function* sagas() {
   yield [
-    watchTitle(),
+    signInFlow(),
   ];
 }

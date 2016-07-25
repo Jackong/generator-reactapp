@@ -1,19 +1,19 @@
 import { combineReducers } from 'redux';
-import { handleActions } from 'redux-actions';
 import { routerReducer } from 'react-router-redux';
+import { handleActions } from 'redux-actions';
 import { fromJS } from 'immutable';
 
-import { CHANGE_TITLE } from '../actions';
+import { types } from '../actions';
 
 export const initState = fromJS({
-  title: null,
+  user: {},
 });
 
-export const title = handleActions({
-  [CHANGE_TITLE]: (state, action) => action.payload,
-}, initState.get('title'));
+export const user = handleActions({
+  [types.SIGN_IN]: (state, action) => state.merge(action.payload),
+}, initState.get('user'));
 
 export default combineReducers({
   routing: routerReducer,
-  title,
+  user,
 });

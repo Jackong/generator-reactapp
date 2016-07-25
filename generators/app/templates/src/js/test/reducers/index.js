@@ -1,18 +1,19 @@
 import { expect } from 'chai';
+import { Map } from 'immutable';
 
-import { initState, title } from '../../reducers';
-import { CHANGE_TITLE } from '../../actions';
+import { initState, user } from '../../reducers';
+import { types } from '../../actions';
 
 const { describe, it } = global;
 
 describe('reducers', () => {
-  describe('title', () => {
-    it('should change the title', () => {
-      const expected = 'Hello World';
-      expect(title(initState.get('title'), {
-        type: CHANGE_TITLE,
+  describe('user', () => {
+    it('should merge the user', () => {
+      const expected = { token: 'abc' };
+      expect(user(initState.get('user'), {
+        type: types.SIGN_IN,
         payload: expected,
-      })).to.be.eql(expected);
+      })).to.be.eql(new Map(expected));
     });
   });
 });
