@@ -84,6 +84,7 @@ module.exports = {
       'redux-saga',
       'react-router-redux',
       'history',
+      'query-string',
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
