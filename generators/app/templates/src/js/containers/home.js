@@ -2,23 +2,25 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import cx from 'classnames';
 
-import { getTitle } from '../actions';
+import { changeTitle, signIn } from '../actions';
 
 @connect(state => ({
-  title: state.title,
+  user: state.user,
 }))
 export class Home extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    title: PropTypes.string,
+    user: PropTypes.object.isRequired,
   }
   componentWillMount() {
-    this.props.dispatch(getTitle());
+    const { dispatch } = this.props;
+    dispatch(changeTitle('test'));
+    dispatch(signIn({ phone: '123', password: 'abc' }));
   }
   render() {
     return (
       <div className={cx('home')}>
-        Hello {this.props.title}
+        Hello {this.props.user.phone}
       </div>
     );
   }

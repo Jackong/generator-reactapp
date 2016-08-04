@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import { jsdom } from 'jsdom';
 import configMockStore from 'redux-mock-store';
 

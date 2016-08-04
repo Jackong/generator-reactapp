@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const lost = require('lost');
 const asImport = require('postcss-import');
 const calc = require('postcss-calc');
 
@@ -27,8 +26,9 @@ const plugins = [
       '//cdn.bootcss.com/redux/3.5.2/redux.min.js',
       '//cdn.bootcss.com/react-redux/4.4.5/react-redux.min.js',
       '//cdn.bootcss.com/react-router-redux/4.0.5/ReactRouterRedux.min.js',
-      '//cdn.bootcss.com/immutable/3.8.1/immutable.min.js',
       '//cdn.bootcss.com/fetch/1.0.0/fetch.min.js',
+      '//cdn.bootcss.com/qs/6.2.1/qs.min.js',
+      '//cdn.bootcss.com/store.js/1.3.20/store.min.js',
       '//cdn.bootcss.com/classnames/2.2.5/index.min.js',
     ],
   }),
@@ -36,7 +36,7 @@ const plugins = [
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': `'${process.env.NODE_ENV}'`,
     DEBUG,
-  })
+  }),
 ];
 
 const loaders = [
@@ -80,16 +80,15 @@ module.exports = {
       'react-redux',
       'react-router',
       'redux',
-      'redux-actions',
       'redux-saga',
       'react-router-redux',
       'history',
-      'immutable',
+      'qs',
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
-      'debug',
       'classnames',
+      'store',
     ],
   },
   output: {
@@ -107,7 +106,6 @@ module.exports = {
         addDependencyTo: wp,
       }),
       precss,
-      lost,
       calc,
       autoprefixer,
     ];
@@ -121,9 +119,10 @@ module.exports = {
     'react-redux': 'ReactRedux',
     'react-router-redux': 'ReactRouterRedux',
     history: 'History',
-    immutable: 'Immutable',
+    qs: 'Qs',
     'whatwg-fetch': 'fetch',
     classnames: 'classNames',
+    store: 'store',
   },
   devtool: DEBUG && '#source-map',
   debug: DEBUG,

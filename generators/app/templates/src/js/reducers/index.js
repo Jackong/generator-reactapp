@@ -1,19 +1,22 @@
 import { combineReducers } from 'redux';
-import { handleActions } from 'redux-actions';
 import { routerReducer } from 'react-router-redux';
-import { fromJS } from 'immutable';
 
-import { CHANGE_TITLE } from '../actions';
+import { types } from '../actions';
 
-export const initState = fromJS({
-  title: null,
-});
+function reducer(handlers, initialState) {
+  return (state = initialState, action) => {
+    if (handlers.hasOwnProperty(action.type)) {
+      return handlers[action.type](state, action);
+    }
+    return state;
+  };
+}
 
-export const title = handleActions({
-  [CHANGE_TITLE]: (state, action) => action.payload,
-}, initState.get('title'));
+export const user = reducer({
+  [types.SIGN_IN]: (state, { payload }) => ({ ...state, ...payload }),
+}, {});
 
 export default combineReducers({
   routing: routerReducer,
-  title,
+  user,
 });

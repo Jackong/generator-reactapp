@@ -1,9 +1,5 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const debug = require('debug');
-
-const error = debug('server:error');
-const info = debug('server:info');
 
 const config = require('./webpack.config');
 
@@ -41,9 +37,10 @@ new WebpackDevServer(webpack(config), {
     },
   },
 }).listen(PORT, IP, (err) => {
+  /*  eslint no-console: ["error", { allow: ["info", "error"] }] */
   if (err) {
-    error(err);
+    console.error(err);
     process.exit(1);
   }
-  info(`Listening at ${IP}:${PORT}`);
+  console.info(`Listening at ${IP}:${PORT}`);
 });
