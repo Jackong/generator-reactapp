@@ -21,7 +21,6 @@
     "redux-saga": "^0.11.0",
     "history": "^2.0.1",
     "classnames": "^2.2.5",
-    "query-string": "^4.2.1",
     "restful.js": "^0.9.6",
     "isomorphic-fetch": "^2.2.1",
     "debug": "^2.2.0",

@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects';
 
 import { types } from '../../actions';
 import { autheticate } from '../../sagas';
-import { signIn } from '../../api';
+import { signIn } from '../../api/user';
 
 const { describe, it } = global;
 

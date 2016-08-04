@@ -10,7 +10,7 @@ import { changeTitle, signIn } from '../actions';
 export class Home extends React.Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    user: PropTypes.object,
+    user: PropTypes.object.isRequired,
   }
   componentWillMount() {
     const { dispatch } = this.props;
@@ -20,7 +20,7 @@ export class Home extends React.Component {
   render() {
     return (
       <div className={cx('home')}>
-        Hello {this.props.user.get('phone')}
+        Hello {this.props.user.phone}
       </div>
     );
   }

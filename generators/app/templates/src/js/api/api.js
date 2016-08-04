@@ -1,14 +1,14 @@
 import restful, { fetchBackend } from 'restful.js';
 import fetch from 'isomorphic-fetch';
-import qs from 'query-string';
+import qs from 'qs';
 
 import code from '../constants/code';
 import env from '../constants/env';
 import endpoint from '../constants/endpoint';
 
-const query = qs.parse(window.location.search);
+const hash = qs.parse(window.location.hash.substr(window.location.hash.indexOf('?') + 1));
 
-const url = endpoint[query.env || env.PROD];
+const url = endpoint[hash.env || env.PROD];
 
 const api = restful(url, fetchBackend(fetch));
 
@@ -27,12 +27,3 @@ api.addResponseInterceptor((response, config) => {
 });
 
 export default api;
-
-export const signIn = ({ phone, password }) => api
-  .custom('user/sign-in')
-  .post({ phone, password })
-  .then(res => res.body().data())
-  .then(data => ({
-    ...data.user,
-    phone,
-  }));
