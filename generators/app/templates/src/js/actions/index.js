@@ -1,18 +1,18 @@
-import { createAction } from 'redux-actions';
-
-export const types = {};
-
-const type = tp => {
-  types[tp] = tp;
+export const types = {
+  CHANGE_TITLE: 'CHANGE_TITLE',
+  SIGN_IN_REQUEST: 'SIGN_IN_REQUEST',
+  SIGN_IN: 'SIGN_IN',
 };
 
-type('CHANGE_TITLE');
-type('SIGN_IN_REQUEST');
-type('SIGN_IN');
-
-export const changeTitle = createAction(types.CHANGE_TITLE, payload => {
+export const changeTitle = payload => {
   document.title = payload;
-  return payload;
-});
+  return {
+    type: types.CHANGE_TITLE,
+    payload,
+  };
+};
 
-export const signIn = createAction(types.SIGN_IN_REQUEST);
+export const signIn = payload => ({
+  type: types.SIGN_IN_REQUEST,
+  payload,
+});

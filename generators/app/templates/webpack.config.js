@@ -80,7 +80,6 @@ module.exports = {
       'react-redux',
       'react-router',
       'redux',
-      'redux-actions',
       'redux-saga',
       'react-router-redux',
       'history',
