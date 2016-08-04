@@ -88,7 +88,6 @@ module.exports = {
       'restful.js',
       'isomorphic-fetch',
       'whatwg-fetch',
-      'debug',
       'classnames',
       'store',
     ],

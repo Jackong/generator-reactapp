@@ -1,15 +1,13 @@
 import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
-import debug from 'debug';
 
 import '../css/index.css';
 import Root from './containers/root';
 
-const error = debug('app:error');
-
 window.handleError = e => {
-  error(e, e.stack);
+  /*  eslint no-console: ["error", { allow: ["error"] }] */
+  console.error(e, e.stack);
 };
 
 window.onunhandledrejection = ({ reason }) => {

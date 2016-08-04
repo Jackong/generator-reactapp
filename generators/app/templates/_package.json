@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "jackong",
   "scripts": {
-    "start": "cross-env MOCK_API=/api* NODE_ENV=development DEBUG=server:* PORT=3000 node server.js",
+    "start": "cross-env MOCK_API=/api* NODE_ENV=development PORT=3000 node server.js",
     "test": "cross-env NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/js/test/setup.js --recursive src/js/test/",
     "testing": "cross-env npm test -- --watch",
     "dev": "cross-env NODE_ENV=development gulp build",
@@ -23,7 +23,6 @@
     "classnames": "^2.2.5",
     "restful.js": "^0.9.6",
     "isomorphic-fetch": "^2.2.1",
-    "debug": "^2.2.0",
     "store": "^1.3.20",
     "whatwg-fetch": "^1.0.0"
   },
