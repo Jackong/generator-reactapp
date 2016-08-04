@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const lost = require('lost');
 const asImport = require('postcss-import');
 const calc = require('postcss-calc');
 
@@ -108,7 +107,6 @@ module.exports = {
         addDependencyTo: wp,
       }),
       precss,
-      lost,
       calc,
       autoprefixer,
     ];
