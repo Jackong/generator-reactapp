@@ -19,7 +19,7 @@ describe('sagas', () => {
         );
 
         expect(gen.next({ user }).value).to.be.eql(
-          put({ type: USER.GET_SUCCESS, payload: user })
+          put({ type: USER.GET.SUCCESS, payload: user })
         );
 
         expect(gen.next()).to.be.eql({
@@ -39,7 +39,7 @@ describe('sagas', () => {
         );
 
         expect(gen.next({ error }).value).to.be.eql(
-          put({ type: USER.GET_FAILURE, payload: error })
+          put({ type: USER.GET.FAILURE, payload: error })
         );
 
         expect(gen.next()).to.be.eql({

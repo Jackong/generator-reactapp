@@ -1,12 +1,32 @@
-export const TITLE = {
-  CHANGE: 'CHANGE_TITLE',
+const createRequestTypes = (resource, operations) => {
+  const types = {};
+  for (let i = 0; i < operations.length; i++) {
+    const operation = operations[i];
+    types[operation] = {
+      REQUEST: `${resource}_${operation}_REQUEST`,
+      SUCCESS: `${resource}_${operation}_SUCCESS`,
+      FAILURE: `${resource}_${operation}_FAILURE`,
+    };
+  }
+  return types;
 };
 
-export const USER = {
-  GET: 'GET_USER',
-  GET_SUCCESS: 'GET_USER_SUCCESS',
-  GET_FAILURE: 'GET_USER_FAILURE',
+const createTypes = (resource, operations) => {
+  const types = {};
+  for (let i = 0; i < operations.length; i++) {
+    const operation = operations[i];
+    types[operation] = `${resource}_${operation}`;
+  }
+  return types;
 };
+
+export const action = (type, payload) => ({
+  type,
+  payload,
+});
+
+export const TITLE = createTypes('TITLE', ['CHANGE']);
+export const USER = createRequestTypes('USER', ['GET']);
 
 export const changeTitle = payload => {
   document.title = payload;
@@ -15,8 +35,3 @@ export const changeTitle = payload => {
     payload,
   };
 };
-
-export const getUser = payload => ({
-  type: USER.GET,
-  payload,
-});

@@ -10,7 +10,7 @@ describe('reducers', () => {
     it('should merge the user', () => {
       const expected = { token: 'abc' };
       expect(user({}, {
-        type: USER.GET_SUCCESS,
+        type: USER.GET.SUCCESS,
         payload: expected,
       })).to.be.eql(expected);
     });

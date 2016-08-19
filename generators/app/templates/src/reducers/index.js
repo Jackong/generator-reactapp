@@ -13,7 +13,7 @@ function reducer(handlers, initialState) {
 }
 
 export const user = reducer({
-  [USER.GET_SUCCESS]: (state, { payload }) => ({ ...state, ...payload }),
+  [USER.GET.SUCCESS]: (state, { payload }) => ({ ...state, ...payload }),
 }, {});
 
 export default combineReducers({

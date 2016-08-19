@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { changeTitle, getUser } from '../actions';
+import { changeTitle, action, USER } from '../actions';
 import Hello from '../components/hello';
 import styles from './home.css';
 
@@ -16,7 +16,7 @@ export class Home extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(changeTitle('test'));
-    dispatch(getUser({ id: '123' }));
+    dispatch(action(USER.GET.REQUEST, { id: 123 }));
   }
   render() {
     return (
