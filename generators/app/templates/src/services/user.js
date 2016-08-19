@@ -1,10 +1,7 @@
 import api from './api';
 
-export const signIn = ({ phone, password }) => api
-  .custom('user/sign-in')
-  .post({ phone, password })
+export const getUser = ({ id }) => api
+  .custom('user')
+  .get({ id })
   .then(res => res.body().data())
-  .then(data => ({
-    ...data.user,
-    phone,
-  }));
+  .catch(error => ({ error }));

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { changeTitle, signIn } from '../actions';
+import { changeTitle, action, USER } from '../actions';
 import Hello from '../components/hello';
 import styles from './home.css';
 
@@ -16,13 +16,13 @@ export class Home extends React.Component {
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(changeTitle('test'));
-    dispatch(signIn({ phone: '123', password: 'abc' }));
+    dispatch(action(USER.GET.REQUEST, { id: 123 }));
   }
   render() {
     return (
       <div>
         <Hello styles={styles}>
-          {this.props.user.phone}
+          {this.props.user.account}
         </Hello>
       </div>
     );

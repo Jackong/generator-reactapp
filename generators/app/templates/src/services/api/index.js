@@ -1,14 +1,11 @@
 import restful, { fetchBackend } from 'restful.js';
 import fetch from 'isomorphic-fetch';
-import qs from 'qs';
 
-import code from '../constants/code';
-import env from '../constants/env';
-import endpoint from '../constants/endpoint';
+import env from '../../constants/env';
+import code from './code';
+import endpoint from './endpoint';
 
-const hash = qs.parse(window.location.hash.substr(window.location.hash.indexOf('?') + 1));
-
-const url = endpoint[hash.env || env.PROD];
+const url = endpoint[env];
 
 const api = restful(url, fetchBackend(fetch));
 
