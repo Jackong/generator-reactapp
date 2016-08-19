@@ -4,7 +4,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 
 const IP = '0.0.0.0';
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 
 config.entry.app = config.entry.app.concat([
   `webpack-dev-server/client?http://${IP}:${PORT}`,

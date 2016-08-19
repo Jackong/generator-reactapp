@@ -50,8 +50,16 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('.eslintrc')
       );
       this.fs.copy(
+        this.templatePath('stylelintrc'),
+        this.destinationPath('.stylelintrc')
+      );
+      this.fs.copy(
         this.templatePath('gitignore'),
         this.destinationPath('.gitignore')
+      );
+      this.fs.copy(
+        this.templatePath('npmignore'),
+        this.destinationPath('.npmignore')
       );
     },
   },

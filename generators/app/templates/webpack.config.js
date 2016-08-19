@@ -45,6 +45,10 @@ const loaders = [
     loader: 'babel',
     exclude: /(node_modules|bower_components)/,
   },
+  {
+    test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    loader: 'file?name=[path][name].[ext]',
+  },
 ];
 
 if (DEBUG) {

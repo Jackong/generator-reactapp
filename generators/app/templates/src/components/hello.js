@@ -12,6 +12,7 @@ class Hello extends React.Component {
     const { children } = this.props;
     return (
       <div styleName="hello">
+        <div styleName="icon" />
         Hello, {children}
       </div>
     );
