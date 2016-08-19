@@ -45,12 +45,20 @@ const loaders = [
     loader: 'babel',
     exclude: /(node_modules|bower_components)/,
   },
+  {
+    test: /\.(png|woff|woff2|eot|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+    loader: 'file?name=[path][name].[ext]',
+  },
 ];
 
 if (DEBUG) {
   loaders.push({
     test: /\.css?$/,
-    loaders: ['style', 'css', 'postcss'],
+    loaders: [
+      'style?sourceMap',
+      'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+      'postcss?sourceMap',
+    ],
   });
 } else {
   plugins.push(new ExtractTextPlugin('./css/app.css'));
@@ -64,14 +72,17 @@ if (DEBUG) {
 
   loaders.push({
     test: /\.css?$/,
-    loader: ExtractTextPlugin.extract('style', ['css', 'postcss']),
+    loader: ExtractTextPlugin.extract('style?sourceMap', [
+      'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+      'postcss?sourceMap',
+    ]),
   });
 }
 
 module.exports = {
   entry: {
     app: [
-      './src/js/index.js',
+      './src/index.js',
     ],
     libs: [
       'babel-polyfill',

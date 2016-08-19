@@ -1,0 +1,10 @@
+.hello {
+  composes: hello from '../components/hello.css';
+  border: 1px solid green;
+}
+
+.icon {
+  composes: icon from '../components/hello.css';
+  width: 125px;
+  height: @width;
+}
