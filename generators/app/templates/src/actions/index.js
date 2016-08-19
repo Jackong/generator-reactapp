@@ -1,18 +1,22 @@
-export const types = {
-  CHANGE_TITLE: 'CHANGE_TITLE',
-  SIGN_IN_REQUEST: 'SIGN_IN_REQUEST',
-  SIGN_IN: 'SIGN_IN',
+export const TITLE = {
+  CHANGE: 'CHANGE_TITLE',
+};
+
+export const USER = {
+  GET: 'GET_USER',
+  GET_SUCCESS: 'GET_USER_SUCCESS',
+  GET_FAILURE: 'GET_USER_FAILURE',
 };
 
 export const changeTitle = payload => {
   document.title = payload;
   return {
-    type: types.CHANGE_TITLE,
+    type: TITLE.CHANGE,
     payload,
   };
 };
 
-export const signIn = payload => ({
-  type: types.SIGN_IN_REQUEST,
+export const getUser = payload => ({
+  type: USER.GET,
   payload,
 });

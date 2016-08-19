@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
 import { user } from '../../reducers';
-import { types } from '../../actions';
+import { USER } from '../../actions';
 
 const { describe, it } = global;
 
@@ -10,7 +10,7 @@ describe('reducers', () => {
     it('should merge the user', () => {
       const expected = { token: 'abc' };
       expect(user({}, {
-        type: types.SIGN_IN,
+        type: USER.GET_SUCCESS,
         payload: expected,
       })).to.be.eql(expected);
     });

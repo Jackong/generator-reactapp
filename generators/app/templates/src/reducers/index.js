@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import { types } from '../actions';
+import { USER } from '../actions';
 
 function reducer(handlers, initialState) {
   return (state = initialState, action) => {
@@ -13,7 +13,7 @@ function reducer(handlers, initialState) {
 }
 
 export const user = reducer({
-  [types.SIGN_IN]: (state, { payload }) => ({ ...state, ...payload }),
+  [USER.GET_SUCCESS]: (state, { payload }) => ({ ...state, ...payload }),
 }, {});
 
 export default combineReducers({
