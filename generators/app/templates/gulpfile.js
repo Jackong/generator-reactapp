@@ -12,7 +12,7 @@ gulp.task('clean', () => del([
 ]));
 
 gulp.task('webpack', ['clean'], () => {
-  return gulp.src('./src/js/index.js')
+  return gulp.src('./src/index.js')
   .pipe(webpack(config))
   .pipe(gulp.dest(buildDir));
 });
@@ -40,4 +40,5 @@ gulp.task('replace', ['rev'], () => {
    .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('build', ['clean', 'webpack', 'asset', 'rev', 'replace']);
+gulp.task('dev', ['clean', 'webpack', 'asset']);
+gulp.task('prod', ['clean', 'webpack', 'asset', 'rev', 'replace']);

@@ -2,7 +2,7 @@ import { takeEvery } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 
 import { types } from '../actions';
-import { signIn } from '../api/user';
+import { signIn } from '../services/user';
 
 export function* autheticate({ payload }) {
   const user = yield call(signIn, payload);

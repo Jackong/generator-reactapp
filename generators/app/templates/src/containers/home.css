@@ -1,0 +1,4 @@
+.hello {
+  composes: hello from '../components/hello.css';
+  border: 1px solid green;
+}

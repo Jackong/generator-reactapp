@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import cx from 'classnames';
 
 import { changeTitle, signIn } from '../actions';
+import Hello from '../components/hello';
+import styles from './home.css';
 
 @connect(state => ({
   user: state.user,
@@ -19,8 +20,10 @@ export class Home extends React.Component {
   }
   render() {
     return (
-      <div className={cx('home')}>
-        Hello {this.props.user.phone}
+      <div>
+        <Hello styles={styles}>
+          {this.props.user.phone}
+        </Hello>
       </div>
     );
   }

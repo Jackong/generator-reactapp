@@ -1,7 +1,6 @@
 const yeoman = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
-const mkdirp = require('mkdirp');
 
 module.exports = yeoman.Base.extend({
   init() {
@@ -33,36 +32,14 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('gulpfile.js')
       );
       this.fs.copy(
-        this.templatePath('src/api'),
-        this.destinationPath('src/api')
-      );
-      this.fs.copy(
-        this.templatePath('src/js/constants'),
-        this.destinationPath('src/js/constants')
-      );
-      this.fs.copy(
-        this.templatePath('src/js/api'),
-        this.destinationPath('src/js/api')
-      );
-      this.fs.copy(
-        this.templatePath('src/templates'),
-        this.destinationPath('src/templates')
-      );
-      this.fs.copy(
         this.templatePath('src'),
         this.destinationPath('src')
-      );
-      mkdirp.sync(this.destinationPath('src/js/components'));
-      this.fs.copy(
-        this.templatePath('src/js/index.js'),
-        this.destinationPath('src/js/index.js')
       );
       this.fs.copy(
         this.templatePath('babelrc'),
         this.destinationPath('.babelrc')
       );
     },
-
     projectfiles() {
       this.fs.copy(
         this.templatePath('editorconfig'),
