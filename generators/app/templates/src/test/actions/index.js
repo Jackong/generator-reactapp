@@ -1,14 +1,14 @@
 import { expect } from 'chai';
 
-import { types, changeTitle } from '../../actions';
+import { TITLE, changeTitle } from '../../actions';
 
 const { describe, it } = global;
 
 describe('actions', () => {
-  describe(types.CHANGE_TITLE, () => {
+  describe(TITLE.CHANGE, () => {
     it('should create an action to change title', () => {
       const expectedAction = {
-        type: types.CHANGE_TITLE,
+        type: TITLE.CHANGE,
         payload: 'test',
       };
       expect(changeTitle('test')).to.be.eql(expectedAction);
