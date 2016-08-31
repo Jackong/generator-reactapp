@@ -2,13 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { changeTitle, action, USER } from '../actions';
+import selector from '../selectors/user';
 import Hello from '../components/hello';
 import styles from './home.css';
 
-@connect(state => ({
-  user: state.user,
+@connect((state, props) => ({
+  user: selector(state, props),
 }))
-export class Home extends React.Component {
+export class Home extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
@@ -22,7 +23,7 @@ export class Home extends React.Component {
     return (
       <div>
         <Hello styles={styles}>
-          {this.props.user.account}
+          {this.props.user.get('name')}
         </Hello>
       </div>
     );
