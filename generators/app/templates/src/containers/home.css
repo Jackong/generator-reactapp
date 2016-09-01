@@ -1,6 +1,6 @@
 .hello {
   composes: hello from '../components/hello.css';
-  border: 1px solid green;
+  border: 1px solid gray;
 }
 
 .icon {

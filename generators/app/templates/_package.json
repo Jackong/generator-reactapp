@@ -7,14 +7,14 @@
     "lint": "cross-env gulp lint",
     "test": "cross-env gulp lint && NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/test/setup.js --recursive src/test/",
     "testing": "cross-env npm test -- --watch",
-    "dev": "cross-env NODE_ENV=development gulp dev",
-    "prod": "cross-env NODE_ENV=production gulp prod"
+    "dev": "cross-env NODE_ENV=development gulp build",
+    "prod": "cross-env NODE_ENV=production gulp build"
   },
   "dependencies": {
-    "react": "^15.2.0",
-    "react-dom": "^15.2.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
-    "react-router": "^2.5.2",
+    "react-router": "^2.7.0",
     "redux": "^3.5.2",
     "react-router": "^2.0.1",
     "react-router-redux": "^4.0.5",
@@ -23,6 +23,9 @@
     "restful.js": "^0.9.6",
     "isomorphic-fetch": "^2.2.1",
     "store": "^1.3.20",
+    "immutable": "^3.8.1",
+    "react-css-modules": "^3.7.10",
+    "reselect": "^2.5.3",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
@@ -61,7 +64,6 @@
     "style-loader": "^0.13.1",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
-    "react-css-modules": "^3.7.10",
     "postcss-import": "^8.1.2",
     "postcss-loader": "^0.9.1",
     "precss": "^1.4.0",
@@ -75,8 +77,6 @@
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "gulp-rev-all": "^0.8.24",
-    "gulp-rev-replace": "^0.4.3",
     "webpack-stream": "^3.1.0"
   }
 }

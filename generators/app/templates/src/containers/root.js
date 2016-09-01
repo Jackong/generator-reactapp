@@ -5,23 +5,34 @@ import { syncHistoryWithStore } from 'react-router-redux';
 
 import store from '../store';
 import App from './app';
-import Home from './home';
-import About from './about';
 
 const history = syncHistoryWithStore(hashHistory, store);
 
 /*  global  DEBUG*/
 const DevTools = DEBUG ? require('./tools.dev').default : require('./tools').default;
 
-class Root extends React.Component {
+class Root extends React.PureComponent {
   render() {
     return (
       <Provider store={store}>
         <div>
           <Router history={history}>
             <Route path="/" component={App}>
-              <IndexRoute component={Home} />
-              <Route path="about" component={About} />
+              <IndexRoute
+                getComponent={(nextState, cb) => {
+                  require.ensure([], function (require) {
+                    cb(null, require('./home').default);
+                  });
+                }}
+              />
+              <Route
+                path="about"
+                getComponent={(nextState, cb) => {
+                  require.ensure([], function (require) {
+                    cb(null, require('./about').default);
+                  });
+                }}
+              />
             </Route>
           </Router>
           <DevTools />
