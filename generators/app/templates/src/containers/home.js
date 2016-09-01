@@ -31,4 +31,3 @@ export class Home extends React.PureComponent {
 }
 
 export default Home;
-module.exports = Home;
