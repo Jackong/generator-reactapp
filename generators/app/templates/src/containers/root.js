@@ -21,7 +21,7 @@ class Root extends React.PureComponent {
               <IndexRoute
                 getComponent={(nextState, cb) => {
                   require.ensure([], function (require) {
-                    cb(null, require('./home'));
+                    cb(null, require('./home').default);
                   });
                 }}
               />
@@ -29,7 +29,7 @@ class Root extends React.PureComponent {
                 path="about"
                 getComponent={(nextState, cb) => {
                   require.ensure([], function (require) {
-                    cb(null, require('./about'));
+                    cb(null, require('./about').default);
                   });
                 }}
               />

@@ -11,4 +11,3 @@ class About extends React.PureComponent {
 }
 
 export default About;
-module.exports = About;

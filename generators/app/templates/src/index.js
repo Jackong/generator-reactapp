@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 
+import './libs';
 import Root from './containers/root';
 
 window.handleError = e => {

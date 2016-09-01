@@ -7,28 +7,23 @@ import Hello from '../components/hello';
 import styles from './home.css';
 
 @connect((state, props) => ({
-  user: selector(state, props),
+  users: selector(state, props),
 }))
 export class Home extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    users: PropTypes.object.isRequired,
   }
   componentWillMount() {
     const { dispatch } = this.props;
     dispatch(changeTitle('test'));
-    dispatch(action(USER.GET.REQUEST, { id: 123 }));
+    dispatch(action(USER.GET_LIST.REQUEST));
   }
   render() {
     return (
-      <div>
-        <Hello styles={styles}>
-          {this.props.user.get('name')}
-        </Hello>
-      </div>
+      <Hello styles={styles} users={this.props.users} />
     );
   }
 }
 
 export default Home;
-module.exports = Home;

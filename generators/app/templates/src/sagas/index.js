@@ -1,20 +1,21 @@
 import { takeEvery } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { call, put, fork } from 'redux-saga/effects';
 
 import { USER, action } from '../actions';
-import { getUser } from '../services/user';
+import { getUsers } from '../services/user';
 
-export function* fetchUser({ payload }) {
-  const { user, error } = yield call(getUser, payload);
+export function* fetchUsers({ payload }) {
+  const { users, error } = yield call(getUsers, payload);
   if (error) {
-    yield put(action(USER.GET.FAILURE, error));
+    yield put(action(USER.GET_LIST.FAILURE, error));
     return;
   }
-  yield put(action(USER.GET.SUCCESS, user));
+  yield put(action(USER.GET_LIST.SUCCESS, users));
 }
 
+
 function* userFlow() {
-  yield* takeEvery(USER.GET.REQUEST, fetchUser);
+  yield fork(takeEvery, USER.GET_LIST.REQUEST, fetchUsers);
 }
 
 export default function* sagas() {

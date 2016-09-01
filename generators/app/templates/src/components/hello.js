@@ -4,16 +4,20 @@ import css from 'react-css-modules';
 import styles from './hello.css';
 
 @css(styles)
-class Hello extends React.Component {
+class Hello extends React.PureComponent {
   static propTypes = {
-    children: PropTypes.node,
+    users: PropTypes.object,
   }
   render() {
-    const { children } = this.props;
+    const { users } = this.props;
     return (
       <div styleName="hello">
         <div styleName="icon" />
-        Hello, {children}
+        <ul>
+          {users.map((user, idx) => (
+            <li key={idx}>{user.get('name')}:{user.get('age')}</li>
+          ))}
+        </ul>
       </div>
     );
   }
