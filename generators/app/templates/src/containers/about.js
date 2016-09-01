@@ -1,6 +1,6 @@
 import React from 'react';
 
-class About extends React.Component {
+class About extends React.PureComponent {
   render() {
     return (
       <div>
@@ -11,3 +11,4 @@ class About extends React.Component {
 }
 
 export default About;
+module.exports = About;
