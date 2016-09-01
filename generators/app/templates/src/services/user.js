@@ -1,7 +1,7 @@
 import api from './api';
 
-export const getUser = ({ id }) => api
-  .custom('user')
-  .get({ id })
+export const getUsers = () => api
+  .custom('users')
+  .get()
   .then(res => res.body().data())
   .catch(error => ({ error }));

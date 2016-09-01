@@ -8,7 +8,16 @@ import sagas from '../sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
-let middlewares = [sagaMiddleware, routerMiddleware(hashHistory)];
+const crashReporter = () => next => action => {
+  try {
+    return next(action);
+  } catch (err) {
+    window.handleError(err);
+  }
+  return null;
+};
+
+let middlewares = [crashReporter, sagaMiddleware, routerMiddleware(hashHistory)];
 
 /*  global  DEBUG*/
 const tools = DEBUG ? require('./tools.dev').default : [];

@@ -5,7 +5,7 @@ import { fromJS } from 'immutable';
 import { USER } from '../actions';
 
 export const init = fromJS({
-  user: {},
+  users: [],
 });
 
 export const reducer = (handlers, initialState) => {
@@ -17,11 +17,11 @@ export const reducer = (handlers, initialState) => {
   };
 };
 
-export const user = reducer({
-  [USER.GET.SUCCESS]: (state, { payload }) => state.merge(payload),
-}, init.get('user'));
+export const users = reducer({
+  [USER.GET_LIST.SUCCESS]: (state, { payload }) => state.merge(payload),
+}, init.get('users'));
 
 export default combineReducers({
   routing: routerReducer,
-  user,
+  users,
 });
