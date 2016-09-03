@@ -1,27 +1,35 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { changeTitle, action, USER } from '../actions';
-import selector from '../selectors/user';
+import { action, TASK } from '../actions';
+import selector from '../selectors/task';
 import Hello from '../components/hello';
+import Tasks from '../components/tasks';
 import styles from './home.css';
 
 @connect((state, props) => ({
-  users: selector(state, props),
+  tasks: selector(state, props),
 }))
 export class Home extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    users: PropTypes.object.isRequired,
+    tasks: PropTypes.object.isRequired,
   }
   componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(changeTitle('test'));
-    dispatch(action(USER.GET_LIST.REQUEST));
+    dispatch(action(TASK.GET_LIST.REQUEST));
+  }
+  onToggle(task) {
+    this.props.dispatch(action(TASK.TOGGLE.REQUEST, task));
   }
   render() {
     return (
-      <Hello styles={styles} users={this.props.users} />
+      <div>
+        <Hello styles={styles}>
+          reactapp
+        </Hello>
+        <Tasks tasks={this.props.tasks} onToggle={this.onToggle.bind(this)} />
+      </div>
     );
   }
 }

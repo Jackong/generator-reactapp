@@ -20,18 +20,10 @@ const createTypes = (resource, operations) => {
   return types;
 };
 
-export const action = (type, payload = null) => ({
+export const action = (type, payload) => ({
   type,
   payload,
 });
 
 export const TITLE = createTypes('TITLE', ['CHANGE']);
-export const USER = createRequestTypes('USER', ['GET_LIST']);
-
-export const changeTitle = payload => {
-  document.title = payload;
-  return {
-    type: TITLE.CHANGE,
-    payload,
-  };
-};
+export const TASK = createRequestTypes('TASK', ['GET_LIST', 'TOGGLE']);
