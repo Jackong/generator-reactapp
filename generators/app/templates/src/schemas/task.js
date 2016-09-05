@@ -1,3 +1,5 @@
-import { Schema } from 'normalizr';
+import { Schema, arrayOf } from 'normalizr';
 
-export default new Schema('tasks');
+export const task = new Schema('tasks');
+
+export const tasks = arrayOf(task);

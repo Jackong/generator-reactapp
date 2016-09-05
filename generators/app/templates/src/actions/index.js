@@ -20,9 +20,10 @@ const createTypes = (resource, operations) => {
   return types;
 };
 
-export const action = (type, payload) => ({
+export const action = (type, payload, meta) => ({
   type,
   payload,
+  meta,
 });
 
 export const TITLE = createTypes('TITLE', ['CHANGE']);
