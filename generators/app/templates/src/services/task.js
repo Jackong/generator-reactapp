@@ -1,7 +1,3 @@
-import api, { flat } from './api';
-import { tasks } from '../schemas/task';
+import api from './api';
 
-export const getTasks = () => api
-  .custom('tasks')
-  .get()
-  .then(flat({ tasks }));
+export const getTasks = () => api.custom('tasks').get();

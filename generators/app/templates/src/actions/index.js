@@ -24,6 +24,7 @@ export const action = (type, payload, meta) => ({
   type,
   payload,
   meta,
+  error: payload instanceof Error,
 });
 
 export const TITLE = createTypes('TITLE', ['CHANGE']);

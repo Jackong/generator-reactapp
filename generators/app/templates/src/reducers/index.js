@@ -33,10 +33,10 @@ export const combineImmutableReducers = reducers => (state, action) => {
 
 export const tasks = reducer({
   [TASK.TOGGLE.SUCCESS]: (state, { payload }) => {
-    if (!state.has(payload.get('id'))) {
+    if (!state.has(payload.id)) {
       return state;
     }
-    return state.update(payload.get('id'), value => value.set('isDone', !value.get('isDone')));
+    return state.update(payload.id, value => value.set('isDone', !value.isDone));
   },
   [TASK.GET_LIST.SUCCESS]: (state) => {
     return state.map(t => new Task(t));
