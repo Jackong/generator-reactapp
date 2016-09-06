@@ -1,6 +1,6 @@
 {
   "name": "generator-reactapp",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
