@@ -1,22 +1,42 @@
 import { expect } from 'chai';
+import { fromJS } from 'immutable';
 
-import { init, users } from '../../reducers';
-import { USER } from '../../actions';
+import { init, tasks } from '../../reducers';
+import { TASK } from '../../actions';
 
 const { describe, it } = global;
 
 describe('reducers', () => {
-  describe('users', () => {
-    it('should merge the users', () => {
-      const expected = [
-        {
-          name: 'jackong',
-        },
-      ];
-      expect(users(init.get('users'), {
-        type: USER.GET_LIST.SUCCESS,
-        payload: expected,
-      })).to.be.eql(init.get('users').merge(expected));
+  const entities = init.get('entities');
+  describe('tasks', () => {
+    describe('when the task not found', () => {
+      it('should not be done', () => {
+        const payload = fromJS({
+          id: '123',
+          isDone: true,
+        });
+        expect(tasks(entities.get('tasks'), {
+          type: TASK.TOGGLE.SUCCESS,
+          payload,
+        })).to.be.eql(entities.get('tasks'));
+      });
+    });
+
+    describe('when the task found', () => {
+      it('should be done', () => {
+        const payload = fromJS({
+          id: '123',
+          isDone: true,
+        });
+        expect(tasks(entities.get('tasks').set(payload.get('id'), payload), {
+          type: TASK.TOGGLE.SUCCESS,
+          payload,
+        })).to.be.eql(
+          entities
+          .get('tasks')
+          .set(payload.get('id'), payload.set('isDone', !payload.get('isDone'))
+        ));
+      });
     });
   });
 });

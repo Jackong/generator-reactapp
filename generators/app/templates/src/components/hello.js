@@ -6,18 +6,14 @@ import styles from './hello.css';
 @css(styles)
 class Hello extends React.PureComponent {
   static propTypes = {
-    users: PropTypes.object,
+    children: PropTypes.node,
   }
   render() {
-    const { users } = this.props;
+    const { children } = this.props;
     return (
       <div styleName="hello">
         <div styleName="icon" />
-        <ul>
-          {users.map((user, idx) => (
-            <li key={idx}>{user.get('name')}:{user.get('age')}</li>
-          ))}
-        </ul>
+        Hello, {children}
       </div>
     );
   }
