@@ -13,14 +13,12 @@ api.addErrorInterceptor((error) => {
   return Promise.reject(error);
 });
 
-api.addResponseInterceptor((response, config) => {
-  const { data, statusCode } = response;
+api.addResponseInterceptor((response) => {
+  const { data } = response;
   if (data.code === code.SUCCESS) {
     return response;
   }
-  return Promise.reject(
-    new Error(`${config.method} ${config.url} => ${statusCode} ${JSON.stringify(data)}`)
-  );
+  return Promise.reject(new Error(data.error));
 });
 
 export default api;

@@ -1,29 +1,29 @@
 import { expect } from 'chai';
 import { call, put } from 'redux-saga/effects';
 
-import { USER } from '../../actions';
-import { fetchUsers } from '../../sagas';
-import { getUsers } from '../../services/user';
+import { TASK } from '../../actions';
+import { fetchTasks } from '../../sagas';
+import { getTasks } from '../../services/task';
 
 const { describe, it } = global;
 
 describe('sagas', () => {
-  describe('fetchUsers', () => {
+  describe('fetchTasks', () => {
     describe('with normal responsive', () => {
       it('should be success', () => {
         const payload = null;
-        const gen = fetchUsers({ payload });
-        const users = [
+        const gen = fetchTasks({ payload });
+        const tasks = [
           {
             name: 'jackong',
           },
         ];
         expect(gen.next().value).to.be.eql(
-          call(getUsers, payload)
+          call(getTasks, payload)
         );
 
-        expect(gen.next({ users }).value).to.be.eql(
-          put({ type: USER.GET_LIST.SUCCESS, payload: users })
+        expect(gen.next({ tasks }).value).to.be.eql(
+          put({ type: TASK.GET_LIST.SUCCESS, payload: { tasks } })
         );
 
         expect(gen.next()).to.be.eql({
@@ -36,14 +36,14 @@ describe('sagas', () => {
     describe('with error responsive', () => {
       it('should be failure', () => {
         const payload = null;
-        const gen = fetchUsers({ payload });
+        const gen = fetchTasks({ payload });
         const error = new Error('user not found');
         expect(gen.next().value).to.be.eql(
-          call(getUsers, payload)
+          call(getTasks, payload)
         );
 
         expect(gen.next({ error }).value).to.be.eql(
-          put({ type: USER.GET_LIST.FAILURE, payload: error })
+          put({ type: TASK.GET_LIST.FAILURE, payload: error })
         );
 
         expect(gen.next()).to.be.eql({
