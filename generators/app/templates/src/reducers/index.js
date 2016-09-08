@@ -3,7 +3,6 @@ import { routerReducer } from 'react-router-redux';
 import { fromJS } from 'immutable';
 
 import { TASK } from '../actions';
-import Task from '../models/task';
 
 export const init = fromJS({
   result: {
@@ -38,15 +37,12 @@ export const tasks = reducer({
     }
     return state.update(payload.id, value => value.set('isDone', !value.isDone));
   },
-  [TASK.GET_LIST.SUCCESS]: (state) => {
-    return state.map(t => new Task(t));
-  },
 }, init.get('entities').get('tasks'));
 
 export const entities = (state = init.get('entities'), action) => {
   let newState = state;
   if (action.payload && action.payload.entities) {
-    newState = state.merge(action.payload.entities);
+    newState = state.mergeDeep(action.payload.entities);
   }
   return combineImmutableReducers({
     tasks,

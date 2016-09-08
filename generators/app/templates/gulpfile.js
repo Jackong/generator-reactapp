@@ -17,8 +17,8 @@ gulp.task('webpack', ['clean', 'lint'], () => {
   .pipe(gulp.dest(buildDir));
 });
 
-gulp.task('asset', ['webpack'], () => {
-  return gulp.src(['./src/images/**/*'], { base: 'src' })
+gulp.task('assets', ['webpack'], () => {
+  return gulp.src(['./src/assets/**/*'], { base: 'src' })
   .pipe(gulp.dest(buildDir));
 });
 
