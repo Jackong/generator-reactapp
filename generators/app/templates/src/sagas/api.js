@@ -2,7 +2,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import { normalize, Schema } from 'normalizr';
 
-import { action } from '../actions';
+import { action, ERROR } from '../actions';
 import { SUCCESS } from '../constants/code';
 
 export function* callAPI({ payload, meta: { api, types, schemas } }) {
@@ -38,7 +38,7 @@ export function* callAPI({ payload, meta: { api, types, schemas } }) {
     });
     yield put(action(types.SUCCESS, { result, entities }));
   } catch (error) {
-    yield put(action(types.FAILURE, error));
+    yield put(action(ERROR.CATCH, error));
   }
 }
 

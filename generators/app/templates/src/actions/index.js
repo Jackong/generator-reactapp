@@ -28,4 +28,4 @@ export const action = (type, payload, meta) => ({
 });
 
 export const ERROR = createTypes('ERROR', ['CATCH']);
-export const TASK = createRequestTypes('TASK', ['GET_LIST', 'TOGGLE']);
+export const TASK = createRequestTypes('TASK', ['GET_LIST', 'TOGGLE', 'ADD']);
