@@ -1,40 +1,39 @@
 import { expect } from 'chai';
-import { fromJS } from 'immutable';
 
-import { init, tasks } from '../../reducers';
+import { init, tasks } from '../../reducers/entities';
 import { TASK } from '../../actions';
+import { Task } from '../../schemas/task';
 
 const { describe, it } = global;
 
 describe('reducers', () => {
-  const entities = init.get('entities');
   describe('tasks', () => {
     describe('when the task not found', () => {
       it('should not be done', () => {
-        const payload = fromJS({
+        const payload = new Task({
           id: '123',
           isDone: true,
         });
-        expect(tasks(entities.get('tasks'), {
+        expect(tasks(init.get('tasks'), {
           type: TASK.TOGGLE.SUCCESS,
           payload,
-        })).to.be.eql(entities.get('tasks'));
+        })).to.be.eql(init.get('tasks'));
       });
     });
 
     describe('when the task found', () => {
       it('should be done', () => {
-        const payload = fromJS({
+        const payload = new Task({
           id: '123',
           isDone: true,
         });
-        expect(tasks(entities.get('tasks').set(payload.get('id'), payload), {
+        expect(tasks(init.get('tasks').set(payload.get('id'), payload), {
           type: TASK.TOGGLE.SUCCESS,
           payload,
         })).to.be.eql(
-          entities
+          init
           .get('tasks')
-          .set(payload.get('id'), payload.set('isDone', !payload.get('isDone'))
+          .set(payload.get('id'), payload.set('isDone', !payload.isDone)
         ));
       });
     });

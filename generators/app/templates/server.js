@@ -31,8 +31,9 @@ new WebpackDevServer(webpack(config), {
       secure: false,
       bypass: (req) => {
         /*  eslint no-param-reassign: ["error", { "props": false }] */
+        const method = req.method;
         req.method = 'GET';
-        return `${req.path}.json`;
+        return `${req.path}/${method.toLowerCase()}.json`;
       },
     },
   },

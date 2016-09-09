@@ -34,6 +34,8 @@ Dependencies:
 
 - [immutable](https://github.com/facebook/immutable-js)
 
+- [normalizr](https://github.com/paularmstrong/normalizr)
+
 - [reselect](https://github.com/reactjs/reselect)
 
 - [store](https://github.com/marcuswestin/store.js)

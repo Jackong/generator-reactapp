@@ -22,12 +22,17 @@ export class Home extends React.PureComponent {
   onToggle(task) {
     this.props.dispatch(action(TASK.TOGGLE.REQUEST, task));
   }
+  onAdd() {
+    this.props.dispatch(action(TASK.ADD.REQUEST, { content: this.refs.task.value }));
+  }
   render() {
     return (
       <div>
         <Hello styles={styles}>
           reactapp
         </Hello>
+        <input ref="task" type="text" placeholder="Enter task" />
+        <button onClick={this.onAdd.bind(this)}>Add</button>
         <Tasks tasks={this.props.tasks} onToggle={this.onToggle.bind(this)} />
       </div>
     );
