@@ -31,7 +31,10 @@ export function* modelize(data, schemas) {
 export function* callAPI({ payload, meta: { api, types, schemas } }) {
   try {
     const res = yield call(api, payload);
-    const data = res.body().data();
+    let data = res;
+    if (typeof res.body === 'function') {
+      data = res.body().data();
+    }
     if (data.code !== SUCCESS) {
       yield put(action(types.FAILURE, payload, data));
       return;
