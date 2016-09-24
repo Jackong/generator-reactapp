@@ -2,8 +2,8 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const asImport = require('postcss-import');
-const calc = require('postcss-calc');
+const mqpacker = require('css-mqpacker');
+const cssnano = require('cssnano');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -57,7 +57,7 @@ if (DEBUG) {
     test: /\.css?$/,
     loaders: [
       'style?sourceMap',
-      'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+      'css?modules&importLoaders=1&localIdentName=[path][name]-[local]-[hash:base64:5]',
       'postcss?sourceMap',
     ],
   });
@@ -77,7 +77,7 @@ if (DEBUG) {
   loaders.push({
     test: /\.css?$/,
     loader: ExtractTextPlugin.extract('style', [
-      'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+      'css?modules&importLoaders=1&localIdentName=[path][name]-[local]-[hash:base64:5]',
       'postcss',
     ], {
       publicPath: '../',
@@ -107,12 +107,14 @@ module.exports = {
   },
   postcss(wp) {
     return [
-      asImport({
-        addDependencyTo: wp,
+      precss({
+        import: {
+          addDependencyTo: wp,
+        },
       }),
-      precss,
-      calc,
       autoprefixer,
+      mqpacker,
+      cssnano,
     ];
   },
   externals: DEBUG ? {} : {
