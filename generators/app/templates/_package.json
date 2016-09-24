@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "jackong",
   "scripts": {
-    "start": "cross-env MOCK_API=/api* NODE_ENV=development node server.js",
+    "start": "cross-env NODE_ENV=development node server.js",
     "lint": "cross-env gulp lint",
     "test": "cross-env gulp lint && NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/test/setup.js --recursive src/test/",
     "testing": "cross-env npm test -- --watch",
@@ -77,6 +77,7 @@
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "drakov": "^1.0.1",
     "webpack-stream": "^3.1.0"
   }
 }

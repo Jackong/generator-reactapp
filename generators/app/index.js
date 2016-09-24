@@ -36,6 +36,10 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('src')
       );
       this.fs.copy(
+        this.templatePath('api'),
+        this.destinationPath('api')
+      );
+      this.fs.copy(
         this.templatePath('babelrc'),
         this.destinationPath('.babelrc')
       );

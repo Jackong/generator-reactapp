@@ -1,10 +1,14 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
+const drakov = require('drakov');
+const watcher = require('drakov/lib/watcher');
+const api = require('./api');
 
 const config = require('./webpack.config');
 
 const IP = '0.0.0.0';
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || 3000, 10);
+const API_PORT = PORT + 1;
 
 config.entry.app = config.entry.app.concat([
   `webpack-dev-server/client?http://${IP}:${PORT}`,
@@ -27,14 +31,9 @@ new WebpackDevServer(webpack(config), {
     'Access-Control-Allow-Origin': '*',
   },
   proxy: {
-    [process.env.MOCK_API]: {
+    '/*': {
       secure: false,
-      bypass: (req) => {
-        /*  eslint no-param-reassign: ["error", { "props": false }] */
-        const method = req.method;
-        req.method = 'GET';
-        return `${req.path}/${method.toLowerCase()}.json`;
-      },
+      target: `http://localhost:${API_PORT}/`,
     },
   },
 }).listen(PORT, IP, (err) => {
@@ -44,4 +43,8 @@ new WebpackDevServer(webpack(config), {
     process.exit(1);
   }
   console.info(`Listening at ${IP}:${PORT}`);
+  const argv = Object.assign({}, api, {
+    serverPort: API_PORT,
+  });
+  drakov.run(argv, () => watcher(argv));
 });
