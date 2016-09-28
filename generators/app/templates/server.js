@@ -16,11 +16,6 @@ config.entry.app = config.entry.app.concat([
 ]);
 
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
-config.module.loaders.unshift({
-  test: /\.js?$/,
-  loader: 'react-hot',
-  exclude: /(node_modules|bower_components)/,
-});
 
 new WebpackDevServer(webpack(config), {
   contentBase: 'src',
@@ -31,7 +26,7 @@ new WebpackDevServer(webpack(config), {
     'Access-Control-Allow-Origin': '*',
   },
   proxy: {
-    '/*': {
+    '/': {
       secure: false,
       target: `http://localhost:${API_PORT}/`,
     },
