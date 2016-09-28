@@ -141,11 +141,12 @@ npm run prod
 - .eslintrc `eslint config`
 - gulpfile.js `gulp tasks`
 - server.js `dev-server`
+- api.js `mock api server`
+- db.json `mock data`
 - webpack.config.js `webpack config`
 - src/
 
   - templates/index.html `html entry template`
-  - api/ `mock api file`
   - assets/
   - actions/ `redux actions`
   - components/ `react components(reusability)`
@@ -153,9 +154,10 @@ npm run prod
   - containers/ `react containers(route)`
   - reducers/ `redux reducers`
   - sagas/ `redux sagas`
-  - schemas/ `schemas and model for normalizr`
+  - schemas/ `records and models for normalizr`
+  - services/ `api services`
   - selectors/ `selectors for reselect`
-  - services/ `services for api and logic`
+  - api/ `api config`
   - store/ `redux store`
   - test/ `test scripts`
   - index.jsx `js entry`

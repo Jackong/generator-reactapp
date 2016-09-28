@@ -20,10 +20,12 @@ export class Home extends React.PureComponent {
     dispatch(action(TASK.GET_LIST.REQUEST));
   }
   onToggle(task) {
-    this.props.dispatch(action(TASK.TOGGLE.REQUEST, task));
+    this.props.dispatch(action(TASK.UPDATE.REQUEST, task.set('isDone', !task.isDone)));
   }
   onAdd() {
-    this.props.dispatch(action(TASK.ADD.REQUEST, { content: this.refs.task.value }));
+    const { task } = this.refs;
+    this.props.dispatch(action(TASK.ADD.REQUEST, { isDone: false, content: task.value }));
+    task.value = '';
   }
   render() {
     return (

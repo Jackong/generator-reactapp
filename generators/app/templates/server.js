@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const drakov = require('drakov');
-const watcher = require('drakov/lib/watcher');
 const api = require('./api');
 
 const config = require('./webpack.config');
@@ -37,9 +35,6 @@ new WebpackDevServer(webpack(config), {
     console.error(err);
     process.exit(1);
   }
+  api('/api', API_PORT);
   console.info(`Listening at ${IP}:${PORT}`);
-  const argv = Object.assign({}, api, {
-    serverPort: API_PORT,
-  });
-  drakov.run(argv, () => watcher(argv));
 });
