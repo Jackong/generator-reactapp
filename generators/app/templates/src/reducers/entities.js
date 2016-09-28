@@ -11,12 +11,7 @@ export const init = fromJS({
 export const tasks = reducer({
   [TASK.GET_LIST.SUCCESS]: (state, { payload }) => state.merge(payload.entities.tasks),
   [TASK.ADD.SUCCESS]: (state, { payload }) => state.merge(payload.entities.tasks),
-  [TASK.TOGGLE.SUCCESS]: (state, { payload }) => {
-    if (!state.has(payload.id)) {
-      return state;
-    }
-    return state.update(payload.id, value => value.set('isDone', !value.isDone));
-  },
+  [TASK.UPDATE.SUCCESS]: (state, { payload }) => state.merge(payload.entities.tasks),
 }, init.get('tasks'));
 
 export default combineReducers({
