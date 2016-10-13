@@ -1,17 +1,27 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { observer, PropTypes } from 'mobx-react';
 
-class Tasks extends React.PureComponent {
+import stores from '../stores';
+
+@observer
+class Tasks extends React.Component {
   static propTypes = {
-    tasks: PropTypes.object.isRequired,
-    onToggle: PropTypes.func.isRequired,
+    tasks: PropTypes.observableArrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number,
+      content: React.PropTypes.string,
+      isDone: React.PropTypes.bool,
+    })).isRequired,
   }
   render() {
-    const { tasks, onToggle } = this.props;
+    const { tasks } = this.props;
     return (
       <ul>
         {tasks.map(task => (
           <li key={task.id} >
-            <input onChange={() => onToggle(task)} type="checkbox" checked={task.isDone} />
+            <input
+              onChange={() => stores.task.toggle(task)}
+              type="checkbox" checked={task.isDone}
+            />
             <span>{task.content}</span>
           </li>
         ))}

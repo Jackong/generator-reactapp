@@ -15,28 +15,17 @@ Dependencies:
 - [react](https://facebook.github.io/react/)
 
   - [react-router](https://github.com/reactjs/react-router)
-  - [babel](http://babeljs.io/)
   - [react-css-modules](https://github.com/gajus/react-css-modules)
 
-- [redux](http://redux.js.org/)
+- [mobx](https://github.com/mobxjs/mobx)
 
-  - [redux-devtools](https://github.com/gaearon/redux-devtools)
-  - [redux-logger](https://github.com/theaqua/redux-logger)
-  - [redux-saga](https://github.com/yelouafi/redux-saga)
-  - [react-router-redux](https://github.com/reactjs/react-router-redux)
-
-- [babel-polyfill](https://babeljs.io/docs/usage/polyfill)
+  - [mobx-react](https://github.com/mobxjs/mobx-react)
+  - [mobx-react-devtools](https://github.com/mobxjs/mobx-react-devtools)
 
 - [restful.js](https://github.com/marmelab/restful.js)
 
   - [fetch](https://github.com/github/fetch)
   - [request](https://github.com/request/request)
-
-- [immutable](https://github.com/facebook/immutable-js)
-
-- [normalizr](https://github.com/paularmstrong/normalizr)
-
-- [reselect](https://github.com/reactjs/reselect)
 
 - [store](https://github.com/marcuswestin/store.js)
 
@@ -148,17 +137,11 @@ npm run prod
 
   - templates/index.html `html entry template`
   - assets/
-  - actions/ `redux actions`
   - components/ `react components(reusability)`
   - constants/ `common constants`
   - containers/ `react containers(route)`
-  - reducers/ `redux reducers`
-  - sagas/ `redux sagas`
-  - schemas/ `records and models for normalizr`
-  - services/ `api services`
-  - selectors/ `selectors for reselect`
   - api/ `api config`
-  - store/ `redux store`
+  - stores/ `mobx stores`
   - test/ `test scripts`
   - index.jsx `js entry`
   - libs.jsx `js vendor`
