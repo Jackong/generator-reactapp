@@ -1,40 +1,18 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Provider } from 'mobx-react';
+import { Router, hashHistory } from 'react-router';
 
-import store from '../store';
-import App from './app';
+import routes from './routes';
 
-const history = syncHistoryWithStore(hashHistory, store);
-
-/*  global  DEBUG*/
+/* global DEBUG */
 const DevTools = DEBUG ? require('./tools.dev').default : require('./tools').default;
 
-class Root extends React.PureComponent {
+class Root extends React.Component {
   render() {
     return (
-      <Provider store={store}>
+      <Provider>
         <div>
-          <Router history={history}>
-            <Route path="/" component={App}>
-              <IndexRoute
-                getComponent={(nextState, cb) => {
-                  require.ensure([], function (require) {
-                    cb(null, require('./home').default);
-                  });
-                }}
-              />
-              <Route
-                path="about"
-                getComponent={(nextState, cb) => {
-                  require.ensure([], function (require) {
-                    cb(null, require('./about').default);
-                  });
-                }}
-              />
-            </Route>
-          </Router>
+          <Router history={hashHistory} routes={routes} />
           <DevTools />
         </div>
       </Provider>

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-class App extends React.PureComponent {
+class App extends React.Component {
   static propTypes = {
     children: PropTypes.node,
   }
