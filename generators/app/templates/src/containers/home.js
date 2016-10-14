@@ -13,12 +13,12 @@ export class Home extends React.Component {
   componentWillMount() {
     this.props.task.gets();
   }
-  onAdd() {
+  onAdd = () => {
     this.props.task.add({ isDone: false, content: this.task.value });
     this.task.value = '';
   }
-  onToggle(t) {
-    this.props.task.toggle(t);
+  onToggle = (task) => {
+    this.props.task.toggle(task);
   }
   render() {
     return (
@@ -27,8 +27,8 @@ export class Home extends React.Component {
           reactapp
         </Hello>
         <input ref={(ref) => { this.task = ref; }} type="text" placeholder="Enter task" />
-        <button onClick={this.onAdd.bind(this)}>Add</button>
-        <Tasks tasks={this.props.task.tasks} onToggle={this.onToggle.bind(this)} />
+        <button onClick={this.onAdd}>Add</button>
+        <Tasks tasks={this.props.task.tasks} onToggle={this.onToggle} />
       </div>
     );
   }

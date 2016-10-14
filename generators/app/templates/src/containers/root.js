@@ -5,7 +5,7 @@ import { Router, hashHistory } from 'react-router';
 import routes from './routes';
 import * as stores from '../stores';
 
-const DevTools = global.DEBUG ? require('./tools.dev').default : require('./tools').default;
+const DevTools = global.DEBUG ? require('mobx-react-devtools').default : () => null;
 
 class Root extends React.Component {
   render() {
