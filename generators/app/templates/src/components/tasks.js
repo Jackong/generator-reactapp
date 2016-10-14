@@ -1,8 +1,6 @@
 import React from 'react';
 import { observer, PropTypes } from 'mobx-react';
 
-import stores from '../stores';
-
 @observer
 class Tasks extends React.Component {
   static propTypes = {
@@ -11,15 +9,16 @@ class Tasks extends React.Component {
       content: React.PropTypes.string,
       isDone: React.PropTypes.bool,
     })).isRequired,
+    onToggle: React.PropTypes.func,
   }
   render() {
-    const { tasks } = this.props;
+    const { tasks, onToggle } = this.props;
     return (
       <ul>
         {tasks.map(task => (
           <li key={task.id} >
             <input
-              onChange={() => stores.task.toggle(task)}
+              onChange={() => onToggle(task)}
               type="checkbox" checked={task.isDone}
             />
             <span>{task.content}</span>

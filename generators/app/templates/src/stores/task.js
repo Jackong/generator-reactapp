@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 
 import api from '../api';
 
-class Task {
+export default class Task {
   @observable tasks = [];
 
   @action gets = () => {
@@ -48,5 +48,3 @@ class Task {
     });
   }
 }
-
-export default Task;

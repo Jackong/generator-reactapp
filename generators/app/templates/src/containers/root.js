@@ -3,14 +3,14 @@ import { Provider } from 'mobx-react';
 import { Router, hashHistory } from 'react-router';
 
 import routes from './routes';
+import * as stores from '../stores';
 
-/* global DEBUG */
-const DevTools = DEBUG ? require('./tools.dev').default : require('./tools').default;
+const DevTools = global.DEBUG ? require('./tools.dev').default : require('./tools').default;
 
 class Root extends React.Component {
   render() {
     return (
-      <Provider>
+      <Provider {...stores}>
         <div>
           <Router history={hashHistory} routes={routes} />
           <DevTools />
