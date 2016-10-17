@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import nock from 'nock';
 import { observe } from 'mobx';
 
-import Task from '../../stores/task';
+import Task from '../../src/stores/task';
 
 const { beforeEach, describe, it } = global;
 

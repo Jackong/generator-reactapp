@@ -40,6 +40,10 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('src')
       );
       this.fs.copy(
+        this.templatePath('test'),
+        this.destinationPath('test')
+      );
+      this.fs.copy(
         this.templatePath('db.json'),
         this.destinationPath('db.json')
       );

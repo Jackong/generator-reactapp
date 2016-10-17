@@ -5,7 +5,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development node server.js",
     "lint": "cross-env gulp lint",
-    "test": "cross-env gulp lint && NODE_ENV=production mocha --compilers jsx:babel-core/register --require src/test/setup.js --recursive src/test/",
+    "test": "cross-env gulp lint && NODE_ENV=production mocha --compilers jsx:babel-core/register --require test/setup.js --recursive test/",
     "testing": "cross-env npm test -- --watch",
     "build": "cross-env NODE_ENV=production gulp build"
   },

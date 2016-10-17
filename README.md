@@ -133,6 +133,7 @@ npm run prod
 - api.js `mock api server`
 - db.json `mock data`
 - webpack.config.js `webpack config`
+- test/ `tests`
 - src/
 
   - templates/index.html `html entry template`
@@ -142,7 +143,6 @@ npm run prod
   - containers/ `react containers(route)`
   - api/ `api config`
   - stores/ `mobx stores`
-  - test/ `test scripts`
   - index.jsx `js entry`
   - libs.jsx `js vendor`
   - config.js `config`

@@ -3,12 +3,12 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import { expect } from 'chai';
 
-import Tasks from '../../components/tasks';
+import Tasks from '../../src/components/tasks';
 
 const { describe, it } = global;
 
 describe('components', () => {
-  describe('<Task />', () => {
+  describe('<Tasks />', () => {
     it('should render tasks', () => {
       const toggle = sinon.spy();
       const tasks = [{
