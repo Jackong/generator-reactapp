@@ -6,7 +6,7 @@ const config = {
     API: '/api',
   },
   [TEST]: {
-    API: '/api',
+    API: 'http://localhost/api',
   },
   [PROD]: {
     API: '/api',
