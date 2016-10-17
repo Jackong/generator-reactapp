@@ -2,7 +2,7 @@ import { observable, action } from 'mobx';
 
 import api from '../api';
 
-class Task {
+export default class Task {
   @observable tasks = [];
 
   @action gets = () => {
@@ -35,9 +35,6 @@ class Task {
     api
     .one('tasks', task.id)
     .put({ ...task, isDone: !task.isDone })
-    .then((res) => {
-      return res.body().data();
-    })
     .then(() => {
       for (let i = 0, l = this.tasks.length; i < l; i += 1) {
         if (this.tasks[i].id === task.id) {
@@ -48,5 +45,3 @@ class Task {
     });
   }
 }
-
-export default Task;

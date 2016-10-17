@@ -1,7 +1,5 @@
 import Task from './task';
 
-const task = new Task();
+export const task = new Task();
 
-export default {
-  task,
-};
+export default null;
