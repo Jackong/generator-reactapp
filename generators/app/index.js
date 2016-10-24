@@ -24,6 +24,10 @@ module.exports = yeoman.Base.extend({
         }
       );
       this.fs.copy(
+        this.templatePath('api.js'),
+        this.destinationPath('api.js')
+      );
+      this.fs.copy(
         this.templatePath('server.js'),
         this.destinationPath('server.js')
       );
@@ -36,8 +40,12 @@ module.exports = yeoman.Base.extend({
         this.destinationPath('src')
       );
       this.fs.copy(
-        this.templatePath('api'),
-        this.destinationPath('api')
+        this.templatePath('test'),
+        this.destinationPath('test')
+      );
+      this.fs.copy(
+        this.templatePath('db.json'),
+        this.destinationPath('db.json')
       );
       this.fs.copy(
         this.templatePath('babelrc'),

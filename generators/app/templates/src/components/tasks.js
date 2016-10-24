@@ -1,9 +1,15 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { observer, PropTypes } from 'mobx-react';
 
-class Tasks extends React.PureComponent {
+@observer
+class Tasks extends React.Component {
   static propTypes = {
-    tasks: PropTypes.object.isRequired,
-    onToggle: PropTypes.func.isRequired,
+    tasks: PropTypes.observableArrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number,
+      content: React.PropTypes.string,
+      isDone: React.PropTypes.bool,
+    })).isRequired,
+    onToggle: React.PropTypes.func,
   }
   render() {
     const { tasks, onToggle } = this.props;
@@ -11,7 +17,10 @@ class Tasks extends React.PureComponent {
       <ul>
         {tasks.map(task => (
           <li key={task.id} >
-            <input onChange={() => onToggle(task)} type="checkbox" checked={task.isDone} />
+            <input
+              onChange={() => onToggle(task)}
+              type="checkbox" checked={task.isDone}
+            />
             <span>{task.content}</span>
           </li>
         ))}

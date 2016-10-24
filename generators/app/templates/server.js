@@ -1,7 +1,5 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const drakov = require('drakov');
-const watcher = require('drakov/lib/watcher');
 const api = require('./api');
 
 const config = require('./webpack.config');
@@ -16,11 +14,6 @@ config.entry.app = config.entry.app.concat([
 ]);
 
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
-config.module.loaders.unshift({
-  test: /\.js?$/,
-  loader: 'react-hot',
-  exclude: /(node_modules|bower_components)/,
-});
 
 new WebpackDevServer(webpack(config), {
   contentBase: 'src',
@@ -31,7 +24,7 @@ new WebpackDevServer(webpack(config), {
     'Access-Control-Allow-Origin': '*',
   },
   proxy: {
-    '/*': {
+    '/': {
       secure: false,
       target: `http://localhost:${API_PORT}/`,
     },
@@ -42,9 +35,6 @@ new WebpackDevServer(webpack(config), {
     console.error(err);
     process.exit(1);
   }
+  api('/api', API_PORT);
   console.info(`Listening at ${IP}:${PORT}`);
-  const argv = Object.assign({}, api, {
-    serverPort: API_PORT,
-  });
-  drakov.run(argv, () => watcher(argv));
 });

@@ -1,29 +1,24 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { observer, PropTypes } from 'mobx-react';
 
-import { action, TASK } from '../actions';
-import selector from '../selectors/task';
 import Hello from '../components/hello';
 import Tasks from '../components/tasks';
 import styles from './home.css';
 
-@connect((state, props) => ({
-  tasks: selector(state, props),
-}))
-export class Home extends React.PureComponent {
+@observer(['task'])
+export class Home extends React.Component {
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    tasks: PropTypes.object.isRequired,
+    task: PropTypes.observableObject.isRequired,
   }
   componentWillMount() {
-    const { dispatch } = this.props;
-    dispatch(action(TASK.GET_LIST.REQUEST));
+    this.props.task.gets();
   }
-  onToggle(task) {
-    this.props.dispatch(action(TASK.TOGGLE.REQUEST, task));
+  onAdd = () => {
+    this.props.task.add({ isDone: false, content: this.task.value });
+    this.task.value = '';
   }
-  onAdd() {
-    this.props.dispatch(action(TASK.ADD.REQUEST, { content: this.refs.task.value }));
+  onToggle = (task) => {
+    this.props.task.toggle(task);
   }
   render() {
     return (
@@ -31,9 +26,9 @@ export class Home extends React.PureComponent {
         <Hello styles={styles}>
           reactapp
         </Hello>
-        <input ref="task" type="text" placeholder="Enter task" />
-        <button onClick={this.onAdd.bind(this)}>Add</button>
-        <Tasks tasks={this.props.tasks} onToggle={this.onToggle.bind(this)} />
+        <input ref={(ref) => { this.task = ref; }} type="text" placeholder="Enter task" />
+        <button onClick={this.onAdd}>Add</button>
+        <Tasks tasks={this.props.task.tasks} onToggle={this.onToggle} />
       </div>
     );
   }

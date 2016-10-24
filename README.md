@@ -15,28 +15,17 @@ Dependencies:
 - [react](https://facebook.github.io/react/)
 
   - [react-router](https://github.com/reactjs/react-router)
-  - [babel](http://babeljs.io/)
   - [react-css-modules](https://github.com/gajus/react-css-modules)
 
-- [redux](http://redux.js.org/)
+- [mobx](https://github.com/mobxjs/mobx)
 
-  - [redux-devtools](https://github.com/gaearon/redux-devtools)
-  - [redux-logger](https://github.com/theaqua/redux-logger)
-  - [redux-saga](https://github.com/yelouafi/redux-saga)
-  - [react-router-redux](https://github.com/reactjs/react-router-redux)
-
-- [babel-polyfill](https://babeljs.io/docs/usage/polyfill)
+  - [mobx-react](https://github.com/mobxjs/mobx-react)
+  - [mobx-react-devtools](https://github.com/mobxjs/mobx-react-devtools)
 
 - [restful.js](https://github.com/marmelab/restful.js)
 
   - [fetch](https://github.com/github/fetch)
   - [request](https://github.com/request/request)
-
-- [immutable](https://github.com/facebook/immutable-js)
-
-- [normalizr](https://github.com/paularmstrong/normalizr)
-
-- [reselect](https://github.com/reactjs/reselect)
 
 - [store](https://github.com/marcuswestin/store.js)
 
@@ -141,23 +130,19 @@ npm run prod
 - .eslintrc `eslint config`
 - gulpfile.js `gulp tasks`
 - server.js `dev-server`
+- api.js `mock api server`
+- db.json `mock data`
 - webpack.config.js `webpack config`
+- test/ `tests`
 - src/
 
   - templates/index.html `html entry template`
-  - api/ `mock api file`
   - assets/
-  - actions/ `redux actions`
   - components/ `react components(reusability)`
   - constants/ `common constants`
   - containers/ `react containers(route)`
-  - reducers/ `redux reducers`
-  - sagas/ `redux sagas`
-  - schemas/ `schemas and model for normalizr`
-  - selectors/ `selectors for reselect`
-  - services/ `services for api and logic`
-  - store/ `redux store`
-  - test/ `test scripts`
+  - api/ `api config`
+  - stores/ `mobx stores`
   - index.jsx `js entry`
   - libs.jsx `js vendor`
   - config.js `config`

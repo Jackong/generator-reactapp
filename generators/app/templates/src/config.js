@@ -1,12 +1,12 @@
 import qs from 'qs';
 import { DEV, TEST, PROD } from './constants/env';
 
-export const config = {
+const config = {
   [DEV]: {
     API: '/api',
   },
   [TEST]: {
-    API: '/api',
+    API: 'http://localhost/api',
   },
   [PROD]: {
     API: '/api',
