@@ -21,9 +21,14 @@ const plugins = [
       '//cdn.bootcss.com/react/15.3.1/react.min.js',
       '//cdn.bootcss.com/react/15.3.1/react-dom.min.js',
       '//cdn.bootcss.com/react-router/2.7.0/ReactRouter.min.js',
-      '//cdn.bootcss.com/es6-promise/4.0.5/es6-promise.auto.min.js',
-      '//cdn.bootcss.com/history/3.0.0/History.min.js',
+      '//cdn.bootcss.com/history/3.0.0/History.min.js',<% if (sm === 'mobx') { %>
       '//cdn.bootcss.com/mobx/2.6.0/mobx.umd.min.js',
+      '//cdn.bootcss.com/es6-promise/4.0.5/es6-promise.auto.min.js',<% } else { %>
+      '//cdn.bootcss.com/babel-polyfill/6.16.0/polyfill.min.js',
+      '//cdn.bootcss.com/redux/3.6.0/redux.min.js',
+      '//cdn.bootcss.com/react-redux/4.4.5/react-redux.min.js',
+      '//cdn.bootcss.com/react-router-redux/4.0.6/ReactRouterRedux.min.js',
+      '//cdn.bootcss.com/immutable/3.8.1/immutable.min.js',<% } %>
       '//cdn.bootcss.com/fetch/1.0.0/fetch.min.js',
       '//cdn.bootcss.com/qs/6.2.1/qs.min.js',
       '//cdn.bootcss.com/store.js/1.3.20/store.min.js',
@@ -120,9 +125,14 @@ module.exports = {
     history: 'History',
     qs: 'Qs',
     'whatwg-fetch': 'fetch',
-    store: 'store',
+    store: 'store',<% if (sm === 'mobx') { %>
     mobx: 'mobx',
-    'es6-promise/auto': 'ES6Promise',
+    'es6-promise/auto': 'ES6Promise',<% } else { %>
+    'babel-polyfill': '_babelPolyfill',
+    redux: 'Redux',
+    'react-redux': 'ReactRedux',
+    'react-router-redux': 'ReactRouterRedux',
+    immutable: 'Immutable',<% } %>
   },
   devtool: DEBUG && '#source-map',
   debug: DEBUG,

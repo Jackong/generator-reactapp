@@ -1,4 +1,5 @@
-import { jsdom } from 'jsdom';
+import { jsdom } from 'jsdom';<% if (sm === 'redux') { %>
+import 'babel-polyfill';<% } %>
 
 global.document = jsdom();
 global.window = document.defaultView;

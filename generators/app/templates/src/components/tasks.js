@@ -1,14 +1,18 @@
 import React from 'react';
+<% if (sm === 'mobx') { %>
 import { observer, PropTypes } from 'mobx-react';
 
-@observer
-class Tasks extends React.Component {
-  static propTypes = {
+@observer<% } else { %>
+import { List } from 'immutable';
+<% } %>
+export default class Tasks extends React.PureComponent {
+  static propTypes = {<% if (sm === 'redux') { %>
+    tasks: React.PropTypes.instanceOf(List).isRequired,<% } else { %>
     tasks: PropTypes.observableArrayOf(React.PropTypes.shape({
       id: React.PropTypes.number,
       content: React.PropTypes.string,
       isDone: React.PropTypes.bool,
-    })).isRequired,
+    })).isRequired,<% } %>
     onToggle: React.PropTypes.func,
   }
   render() {
@@ -28,5 +32,3 @@ class Tasks extends React.Component {
     );
   }
 }
-
-export default Tasks;

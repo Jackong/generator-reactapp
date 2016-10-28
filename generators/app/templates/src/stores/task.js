@@ -1,44 +1,30 @@
 import { observable, action } from 'mobx';
 
-import api from '../api';
+import { getAll, add, update } from '../api/task';
 
 export default class Task {
   @observable tasks = [];
 
-  @action gets = () => {
-    api
-    .all('tasks')
-    .getAll()
-    .then((res) => {
-      return res.body();
-    })
+  @action getAll = () => {
+    getAll()
     .then((entities) => {
-      this.tasks = entities.map((entity) => {
-        return entity.data();
-      });
+      this.tasks = entities;
     });
   }
 
   @action add = (task) => {
-    api
-    .all('tasks')
-    .post(task)
-    .then((res) => {
-      return res.body().data();
-    })
+    add(task)
     .then((entity) => {
       this.tasks.push(entity);
     });
   }
 
-  @action toggle = (task) => {
-    api
-    .one('tasks', task.id)
-    .put({ ...task, isDone: !task.isDone })
+  @action update = (task) => {
+    update(task)
     .then(() => {
       for (let i = 0, l = this.tasks.length; i < l; i += 1) {
         if (this.tasks[i].id === task.id) {
-          this.tasks[i].isDone = !task.isDone;
+          this.tasks[i].isDone = task.isDone;
           break;
         }
       }

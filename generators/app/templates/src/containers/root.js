@@ -1,18 +1,28 @@
 import React from 'react';
-import { Provider } from 'mobx-react';
-import { Router, hashHistory } from 'react-router';
+import { Router, hashHistory } from 'react-router';<% if (sm === 'redux') { %>
+import { Provider } from 'react-redux';
+import { syncHistoryWithStore } from 'react-router-redux';
 
+import store from '../store';
 import routes from './routes';
+
+const stores = { store };
+const history = syncHistoryWithStore(hashHistory, store);<% } else { %>
+import { Provider } from 'mobx-react';
+
 import * as stores from '../stores';
+import routes from './routes';
 
-const DevTools = global.DEBUG ? require('mobx-react-devtools').default : () => null;
+const history = hashHistory;<% } %>
 
-class Root extends React.Component {
+const DevTools = global.DEBUG ? require('./devtools').default : () => null;
+
+class Root extends React.PureComponent {
   render() {
     return (
       <Provider {...stores}>
         <div>
-          <Router history={hashHistory} routes={routes} />
+          <Router history={history} routes={routes} />
           <DevTools />
         </div>
       </Provider>
