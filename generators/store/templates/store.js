@@ -1,12 +1,19 @@
 import { observable, action } from 'mobx';
 
-import { getAll, add, update, remove } from '../api/<%= name %>';
+import { get, getList, add, update, remove } from '../api/<%= name %>';
 
 export default class <%= className %> {
   @observable <%= plural %> = [];
 
-  @action getAll = () => {
-    getAll()
+  @action get = (id) => {
+    get(id)
+    .then((entity) => {
+      this.<%= plural %> = entity;
+    });
+  }
+
+  @action getList = (payload) => {
+    getList(payload)
     .then((entities) => {
       this.<%= plural %> = entities;
     });
