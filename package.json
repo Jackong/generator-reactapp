@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "chalk": "^1.0.0",
+    "plural": "^0.2.0",
     "yeoman-generator": "^0.23.0",
     "yosay": "^1.0.0"
   },
