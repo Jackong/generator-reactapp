@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import css from 'react-css-modules';
 
-import styles from './hello.css';
+import styles from '../styles/hello.css';
 
 @css(styles)
 class Hello extends React.PureComponent {
