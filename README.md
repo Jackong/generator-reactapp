@@ -20,7 +20,12 @@ Dependencies:
 - [mobx](https://github.com/mobxjs/mobx)
 
   - [mobx-react](https://github.com/mobxjs/mobx-react)
-  - [mobx-react-devtools](https://github.com/mobxjs/mobx-react-devtools)
+
+- [redux](http://redux.js.org/)
+  - [redux-saga](https://github.com/yelouafi/redux-saga/)
+  - [reselect](https://github.com/reactjs/reselect)
+  - [immutable](https://facebook.github.io/immutable-js/)
+  - [normalizr](https://github.com/paularmstrong/normalizr/)
 
 - [restful.js](https://github.com/marmelab/restful.js)
 
@@ -91,7 +96,13 @@ Finally, initiate the generator:
 yo reactapp
 ```
 
-### Starting the dev-server
+And then, generate feature by sub-generator:
+
+```bash
+yo reactapp:feature
+```
+
+### Starting the dev-server and api-server
 
 ```bash
 npm start
@@ -111,16 +122,10 @@ npm run testing
 
 ### Building Project
 
-Building for development
-
-```bash
-npm run dev
-```
-
 Building for production
 
 ```bash
-npm run prod
+npm run build 
 ```
 
 ### Project Structure
@@ -131,18 +136,24 @@ npm run prod
 - gulpfile.js `gulp tasks`
 - server.js `dev-server`
 - api.js `mock api server`
-- db.json `mock data`
+- db.json `mock database for api`
 - webpack.config.js `webpack config`
 - test/ `tests`
 - src/
 
   - templates/index.html `html entry template`
   - assets/
-  - components/ `react components(reusability)`
   - constants/ `common constants`
+  - components/ `react components(reusability)`
+  - styles/ `css styles`
   - containers/ `react containers(route)`
-  - api/ `api config`
+  - apis/ `api config`
   - stores/ `mobx stores`
+  - actions/ `redux actions`
+  - reducers/ `redux reducers`
+  - sagas/ `redux sagas`
+  - schemas/ `redux schemas`
+  - selectors/ `redux selectors`
   - index.jsx `js entry`
   - libs.jsx `js vendor`
   - config.js `config`
