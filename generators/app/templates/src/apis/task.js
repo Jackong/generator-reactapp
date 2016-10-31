@@ -1,6 +1,6 @@
-import api from '../api';
+import api from '../apis';
 
-export const getAll = () => {
+export const getList = () => {
   return api
   .all('tasks')
   .getAll()

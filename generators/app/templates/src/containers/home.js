@@ -3,7 +3,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
 
-import { action, TASK } from '../actions';
+import { action } from '../actions';
+import TASK from '../actions/task';
 import selector from '../selectors/task';<% } else { %>
 import React from 'react';
 import { observer, PropTypes } from 'mobx-react';<% } %>
@@ -49,7 +50,7 @@ export default class Home extends React.PureComponent {
     task: PropTypes.observableObject.isRequired,
   }
   componentWillMount() {
-    this.props.task.getAll();
+    this.props.task.getList();
   }
   onAdd = () => {
     this.props.task.add({ isDone: false, content: this.task.value });

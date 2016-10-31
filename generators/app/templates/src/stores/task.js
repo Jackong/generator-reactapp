@@ -1,12 +1,12 @@
 import { observable, action } from 'mobx';
 
-import { getAll, add, update } from '../api/task';
+import { getList, add, update } from '../apis/task';
 
 export default class Task {
   @observable tasks = [];
 
-  @action getAll = () => {
-    getAll()
+  @action getList = () => {
+    getList()
     .then((entities) => {
       this.tasks = entities;
     });

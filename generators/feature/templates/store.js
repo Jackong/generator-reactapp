@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 
-import { get, getList, add, update, remove } from '../api/<%= name %>';
+import { get, getList, add, update, remove } from '../apis/<%= name %>';
 
 export default class <%= className %> {
   @observable <%= plural %> = [];
